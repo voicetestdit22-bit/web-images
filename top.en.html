@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Experience a new level of comfort and control with our smart home application"
+    />
+    <title>The New Application - Smart Home Control</title>
+    <style>
+      /* --- Reset & Base --- */
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "SukhumvitSet", "Segoe UI", Tahoma, sans-serif;
+        line-height: 1.6;
+        color: #000;
+        background-color: #fff;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      /* --- Layout --- */
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 48px 0;
+        margin: 0 auto;
+      }
+
+      .section {
+        width: 100%;
+      }
+
+      .section--intro {
+        overflow: hidden;
+      }
+
+      .section--features {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        min-height: 100vh;
+      }
+
+      /* --- Typography --- */
+      .heading-primary {
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .heading-secondary {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+      }
+
+      .heading-tertiary {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .text-lead {
+        max-width: 784px;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: #333;
+      }
+
+      .text-body {
+        font-weight: 500;
+        line-height: 1.6;
+      }
+
+      .text-highlight {
+        color: #1f97d4;
+      }
+
+      /* --- Header Sections --- */
+      .section-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .feature-header {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* --- Grid Layouts --- */
+      .grid {
+        display: grid;
+        gap: 3rem;
+        width: 100%;
+      }
+
+      .grid--energy-description {
+        grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+      }
+
+      .grid--2-cols {
+        grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+      }
+
+      .grid--3-cols {
+        grid-template-columns: minmax(300px, 1fr) auto minmax(300px, 1fr);
+      }
+
+      .grid--centered {
+        place-items: center;
+      }
+
+      /* --- Feature Card --- */
+      .feature-card {
+        padding: 2rem;
+        background: #fff;
+      }
+
+      .feature-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        min-width: 300px;
+        max-width: 400px;
+      }
+
+      .feature-group--left {
+        justify-self: end;
+      }
+
+      .feature-group--right {
+        justify-self: start;
+      }
+
+      .feature-group--center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+      }
+
+      .feature-group--wide {
+        max-width: 640px;
+      }
+
+      /* --- Feature Items --- */
+      .feature-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .feature-item__header {
+        display: flex;
+        gap: 8px;
+      }
+
+      .feature-item__header--col {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .feature-item__header--row {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .feature-item__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+      }
+
+      .feature-item__icon--large {
+        width: 80px;
+        height: 80px;
+      }
+
+      /* --- Image Grids --- */
+      .image-grid {
+        display: grid;
+        gap: 16px;
+      }
+      .image-grid figcaption {
+        font-size: 0.9rem;
+        text-align: center;
+      }
+      .image-grid--2-cols {
+        grid-template-columns: repeat(2, 61px);
+      }
+
+      .image-grid--4-cols {
+        grid-template-columns: repeat(4, 61px);
+      }
+
+      .image-grid--aircard img {
+        width: 61px;
+        height: 48px;
+        border-radius: 16px;
+      }
+
+      .image-grid--listview {
+        grid-template-columns: repeat(2, 61px);
+        column-gap: 64px;
+        row-gap: 24px;
+      }
+
+      /* --- Schedule Images --- */
+      .schedule-container {
+        width: 346px;
+        height: 290px;
+        background: #f7f7f7;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .schedule-container__img--timezone {
+        width: 272px;
+        height: 160px;
+      }
+
+      .schedule-container__img--list {
+        width: 80px;
+        height: 80px;
+      }
+
+      .schedule-container__img--add {
+        width: 242px;
+        height: 260px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* --- List View --- */
+      .listview-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .listview-item__content {
+        display: flex;
+        align-items: baseline;
+        gap: 2px;
+      }
+
+      .listview-item__value {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+
+      .listview-item__unit {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      /* --- Phone Display --- */
+      .phone-display {
+        width: 300px;
+        height: 606px;
+        display: block;
+        position: relative;
+        z-index: 1;
+      }
+
+      .phone-display--aircard {
+        width: 280px;
+        height: 606px;
+      }
+
+      .phone-display--energy {
+        width: 442px;
+        height: 530px;
+      }
+
+      /* --- Phone Aura Effect --- */
+      .phone-showcase {
+        position: relative;
+        display: inline-block;
+        margin: 0px;
+      }
+
+      .phone-showcase__image {
+        width: 300px;
+        height: 505px;
+        display: block;
+        position: relative;
+        z-index: 1;
+      }
+
+      .phone-showcase__aura-container {
+        position: absolute;
+        bottom: -300px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        border: 2px solid rgba(0, 148, 226, 0.6);
+        border-radius: 50%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .phone-showcase__aura {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          #0094e2 0%,
+          #0066cc 40%,
+          transparent 70%
+        );
+        filter: blur(80px);
+        border-radius: 50%;
+        opacity: 0.8;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* --- Buttons --- */
+      .iotbtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        font-size: 1rem;
+        font-weight: 600;
+        background-color: #fff;
+        color: #000;
+        border-radius: 40px;
+        border: 2px solid #000;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+      .iotbtn:hover {
+        background-color: #000;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .iotbtn--primary {
+        gap: 1.5rem;
+        width: 210px;
+        height: 60px;
+        font-size: 1rem;
+      }
+
+      .iotbtn--secondary {
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 10px 20px;
+        width: 80px;
+      }
+
+      /* --- Arrow Animation --- */
+      .iotbtn__arrow {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        background-color: #000;
+        animation: pulse 2s infinite;
+        padding: 1px;
+      }
+
+      .iotbtn__arrow-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+        }
+        50% {
+          transform: scale(1.1);
+          box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+        }
+      }
+
+      /* --- Badge --- */
+      .badge {
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: center;
+        border: 1px solid #000;
+        border-radius: 40px;
+        padding: 12px 20px;
+        display: inline-block;
+      }
+
+      /* --- Divider --- */
+      .divider {
+        border: none;
+        border-top: 2px solid #ccc;
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      /* --- Footer --- */
+      .section-footer {
+        width: 480px;
+        height: 48px;
+        border-radius: 40px;
+        padding: 12px 20px;
+        background: #00b4ff;
+        color: white;
+        place-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* --- Slider Styles --- */
+      .slider-nav-wrapper {
+        visibility: hidden;
+      }
+      .slider-nav {
+        display: flex;
+        gap: 8px;
+        grid-column: 2;
+        justify-content: space-between;
+        max-width: 500px;
+      }
+
+      .slider-nav__dots {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .slider-nav__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ddd;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+      }
+
+      .slider-nav__dot:hover {
+        background-color: #999;
+        transform: scale(1.2);
+      }
+
+      .slider-nav__dot--active {
+        background-color: #000;
+        width: 28px;
+        border-radius: 5px;
+      }
+
+      .slider-nav__arrows {
+        display: flex;
+        gap: 12px;
+      }
+
+      .slider-nav__arrow {
+        width: 42px;
+        height: 42px;
+        border: 2px solid #000;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .slider-nav__arrow:hover:not(:disabled) {
+        background-color: #000;
+        color: #fff;
+        transform: scale(1.05);
+      }
+
+      .slider-nav__arrow:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .slider-container {
+        display: contents;
+      }
+
+      .slider-item,
+      .slider-description {
+        display: none;
+      }
+
+      .slider-description--active,
+      .slider-item--active {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: 340px; /* adjust to your tallest slide */
+        padding: 1rem;
+        background: #fff;
+      }
+
+      .slider-item--active .feature-group--left {
+        grid-column: 1;
+      }
+
+      .slider-item--active .feature-group--right {
+        grid-column: 2;
+        max-width: 520px;
+      }
+
+      /* --- Responsive Design for Medium Screens --- */
+      @media (max-width: 1440px) {
+        .grid--energy-description {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          gap: 1.5rem;
+        }
+        .slider-description .feature-item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        /* Layout adjustments */
+        .container {
+          padding: 32px 0;
+        }
+
+        .section {
+          padding: 32px 16px;
+        }
+
+        /* Typography */
+        .heading-primary {
+          font-size: 2.5rem;
+        }
+
+        .heading-secondary {
+          font-size: 1.75rem;
+        }
+
+        .text-lead {
+          font-size: 1.25rem;
+          max-width: 640px;
+        }
+
+        /* Grid adjustments */
+        .grid--3-cols,
+        .grid--2-cols {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .grid--3-cols .feature-group,
+        .grid--2-cols .feature-group {
+          justify-self: center;
+          align-items: center;
+          text-align: center;
+          max-width: 600px;
+        }
+
+        .feature-group--left,
+        .feature-group--right {
+          justify-self: center;
+        }
+
+        /* Center text and headers */
+        .feature-item__header--col {
+          align-items: center;
+        }
+
+        .text-body {
+          text-align: center;
+        }
+
+        /* Phone display adjustments */
+        .phone-showcase {
+          margin: 2rem 0;
+        }
+
+        .phone-showcase__aura-container {
+          width: 500px;
+          height: 500px;
+          bottom: -200px;
+        }
+
+        .phone-showcase__aura {
+          width: 500px;
+          height: 500px;
+          filter: blur(60px);
+        }
+
+        .phone-display {
+          width: 280px;
+          height: auto;
+        }
+
+        .phone-display--aircard {
+          width: 260px;
+        }
+
+        .phone-display--energy {
+          width: 380px;
+        }
+
+        /* Button adjustments */
+        .iotbtn--primary {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        /* Feature images */
+        .schedule-container {
+          width: 100%;
+          max-width: 346px;
+          margin: 0 auto;
+        }
+
+        /* Image grids */
+        .image-grid--listview {
+          justify-content: center;
+        }
+
+        /* Slider navigation */
+        .slider-nav {
+          grid-column: 1;
+          max-width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+
+        .slider-nav__dots {
+          order: 2;
+          width: 100%;
+          justify-content: center;
+        }
+
+        .slider-nav__arrows {
+          order: 1;
+        }
+
+        /* Footer adjustments */
+        .section-footer {
+          width: 100%;
+          max-width: 480px;
+          padding: 12px 16px;
+          font-size: 0.9rem;
+        }
+
+        /* Feature sections spacing */
+        .section--features {
+          min-height: auto;
+        }
+
+        .feature-card {
+          padding: 1.5rem;
+        }
+
+        /* Energy section grid */
+        .feature-group--wide {
+          max-width: 100%;
+        }
+
+        /* Divider */
+        .divider {
+          margin: 16px 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        /* Typography for smaller tablets */
+        .heading-primary {
+          font-size: 2rem;
+        }
+
+        .heading-secondary {
+          font-size: 1.5rem;
+        }
+
+        .heading-tertiary {
+          font-size: 1.25rem;
+        }
+
+        .text-lead {
+          font-size: 1.125rem;
+        }
+
+        /* Tighter spacing */
+        .container {
+          padding: 24px 0;
+        }
+
+        .section {
+          padding: 24px 12px;
+        }
+
+        .grid {
+          gap: 2rem;
+        }
+
+        /* Phone displays */
+        .phone-showcase__image {
+          width: 260px;
+          height: auto;
+        }
+
+        .phone-showcase__aura-container {
+          width: 400px;
+          height: 400px;
+          bottom: -150px;
+        }
+
+        .phone-showcase__aura {
+          width: 400px;
+          height: 400px;
+          filter: blur(50px);
+        }
+
+        .phone-display {
+          width: 260px;
+        }
+
+        .phone-display--aircard {
+          width: 240px;
+        }
+
+        .phone-display--energy {
+          width: 320px;
+        }
+
+        /* Feature groups */
+        .feature-group {
+          min-width: 100%;
+          max-width: 100%;
+        }
+
+        /* Buttons */
+        .iotbtn--primary {
+          width: 100%;
+          max-width: 280px;
+          height: 56px;
+          font-size: 0.95rem;
+        }
+
+        .iotbtn--secondary {
+          width: auto;
+          min-width: 80px;
+        }
+
+        /* Image grids */
+        .image-grid--4-cols {
+          grid-template-columns: repeat(4, 56px);
+          gap: 8px;
+        }
+
+        .image-grid--4-cols img {
+          width: 56px;
+          height: 56px;
+        }
+
+        .image-grid--listview {
+          column-gap: 48px;
+          row-gap: 20px;
+        }
+
+        /* Schedule containers */
+        .schedule-container {
+          width: 100%;
+          max-width: 300px;
+          height: 260px;
+        }
+
+        .schedule-container__img--timezone {
+          width: 240px;
+          height: 140px;
+        }
+
+        .schedule-container__img--list {
+          width: 70px;
+          height: 70px;
+        }
+
+        .schedule-container__img--add {
+          width: 220px;
+          height: 240px;
+        }
+
+        /* Feature card */
+        .feature-card {
+          padding: 1.25rem;
+        }
+
+        /* Badge */
+        .badge {
+          font-size: 0.9rem;
+          padding: 10px 16px;
+        }
+
+        /* Slider navigation */
+        .slider-nav__arrow {
+          width: 38px;
+          height: 38px;
+          font-size: 18px;
+        }
+
+        .slider-nav__dot {
+          width: 8px;
+          height: 8px;
+        }
+
+        .slider-nav__dot--active {
+          width: 24px;
+        }
+
+        /* List view items */
+        .listview-item__value {
+          font-size: 1.75rem;
+        }
+
+        /* Feature header */
+        .feature-header {
+          height: 80px;
+        }
+
+        /* Section footer */
+        .section-footer {
+          height: auto;
+          min-height: 48px;
+          padding: 12px 16px;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        /* Hide side columns in intro */
+        .slider-nav-wrapper {
+          visibility: visible;
+          margin-top: 1.5rem;
+        }
+        .slider-nav-wrapper {
+          margin-top: 2rem; /* space between content and nav */
+          text-align: center;
+        }
+        .slider-description {
+          min-height: 300px;
+        } /* a bit smaller on phone */
+
+        /* keep arrows on the same line */
+        .slider-nav__arrows {
+          order: -1;
+        }
+        .slider-nav {
+          grid-row: 3;
+        }
+        .feature-item {
+          height: max-content;
+        }
+        .section--intro .feature-group--left,
+        .section--intro .feature-group--right {
+          display: none;
+        }
+
+        .section--intro .feature-group--center {
+          grid-column: 1 / -1;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .section--intro .btn--primary {
+          margin-bottom: 2rem;
+        }
+        .section-footer {
+          margin-top: 16px;
+          height: 24px;
+          padding: 12px 16px;
+          font-size: 0.85rem;
+        }
+        .phone-showcase__image {
+          width: 280px;
+          height: auto;
+        }
+
+        .phone-showcase__aura-container,
+        .phone-showcase__aura {
+          width: 380px;
+          height: 380px;
+          bottom: -140px;
+          filter: blur(45px);
+        }
+
+        /* Force all feature sections to vertical stack: Image → Text */
+        .section--features .grid--2-cols,
+        .section--features .grid--3-cols {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        /* Reorder: Image first, then description */
+        .section--features .feature-group--left,
+        .section--features .feature-group--right,
+        .section--features .feature-group--center,
+        .section--features .feature-group--wide {
+          order: initial;
+          justify-self: center;
+          text-align: center;
+          max-width: 100%;
+        }
+
+        /* Air Management: Phone in center → move to top */
+        #AirManagement .feature-group--center {
+          order: -1;
+        }
+
+        /* Air Card & Energy: Left (image) before Right (text) */
+        [data-slider] .feature-group--left {
+          order: -1;
+        }
+
+        [data-slider] .feature-group--right {
+          order: 1;
+        }
+
+        /* Schedule: All containers stacked vertically */
+        #Schedule .feature-group--left,
+        #Schedule .feature-group--center,
+        #Schedule .feature-group--right {
+          order: initial;
+        }
+
+        /* Phone displays full width */
+        .phone-display,
+        .phone-display--aircard,
+        .phone-display--energy {
+          width: 100%;
+          max-width: 320px;
+          height: auto;
+          margin: 0 auto;
+          display: block;
+        }
+
+        /* Schedule containers */
+        .schedule-container {
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          padding: 16px;
+        }
+
+        .schedule-container__img--timezone {
+          width: 100%;
+          max-width: 240px;
+          height: auto;
+        }
+
+        .schedule-container__img--add {
+          width: 100%;
+          max-width: 220px;
+          height: auto;
+          position: relative;
+          transform: none;
+          left: auto;
+          bottom: auto;
+          margin-top: 1rem;
+        }
+
+        .schedule-container__img--list {
+          width: 70px;
+          height: 70px;
+        }
+
+        /* Typography adjustments */
+        .heading-primary {
+          font-size: 1.8rem;
+        }
+
+        .heading-secondary {
+          font-size: 1.6rem;
+        }
+
+        .heading-tertiary {
+          font-size: 1.3rem;
+        }
+
+        .text-lead {
+          font-size: 1.1rem;
+        }
+
+        .text-body {
+          font-size: 0.95rem;
+        }
+
+        /* Buttons */
+        .btn--primary {
+          width: 100%;
+          max-width: 280px;
+          height: 54px;
+          font-size: 0.95rem;
+        }
+
+        /* Slider navigation: full width, centered */
+        .slider-nav {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 0 1rem;
+        }
+
+        .slider-nav__dots,
+        .slider-nav__arrows {
+          justify-content: center;
+        }
+
+        .slider-nav__arrows {
+          order: -1;
+        }
+
+        /* Footer */
+        .section-footer {
+          width: 100%;
+          max-width: 100%;
+          font-size: 0.8rem;
+          padding: 12px 16px;
+        }
+
+        /* Image grids */
+        .image-grid--4-cols,
+        .image-grid--2-cols {
+          gap: 8px;
+        }
+
+        .image-grid--4-cols img,
+        .image-grid--aircard img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .image-grid--listview {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 32px;
+          row-gap: 16px;
+          justify-items: center;
+        }
+
+        .listview-item__value {
+          font-size: 1.6rem;
+        }
+
+        /* Badges */
+        .badge {
+          font-size: 0.8rem;
+          padding: 8px 14px;
+        }
+
+        /* Divider */
+        .divider {
+          margin: 1rem 0;
+        }
+
+        /* Feature card padding */
+        .feature-card {
+          padding: 1rem;
+        }
+
+        /* Hide complex grid in notifications */
+        #AirManagement .feature-item__header--col > .feature-item__header--row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+
+        #AirManagement
+          .feature-item__header--col
+          > .feature-item__header--row
+          img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <!-- Introduction Section -->
+      <section class="section section--intro">
+        <header class="section-header">
+          <h1 class="heading-primary">THE NEW APPLICATION</h1>
+          <p class="text-lead">
+            Experience a new level of comfort and control. Smarter, simpler, and
+            more personal – this app connects your lift seamlessly, anytime,
+            anywhere.
+          </p>
+        </header>
+        <div class="grid grid--3-cols">
+          <!-- Left Column -->
+          <article class="feature-group feature-group--left">
+            <div class="feature-item">
+              <header class="feature-item__header feature-item__header--col">
+                <h3 class="heading-tertiary">Air Card</h3>
+                <div class="image-grid image-grid--2-cols image-grid--aircard">
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/aircard1.png?raw=true"
+                    alt="Air card feature 1"
+                  />
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/aircard2.png?raw=true"
+                    alt="Air card feature 2"
+                  />
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/aircard3.png?raw=true"
+                    alt="Air card feature 3"
+                  />
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/aircard4.png?raw=true"
+                    alt="Air card feature 4"
+                  />
+                </div>
+              </header>
+            </div>
+
+            <div class="feature-item">
+              <header class="feature-item__header feature-item__header--row">
+                <img
+                  class="feature-item__icon"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/air.png?raw=true"
+                  alt="Air management icon"
+                />
+                <h3 class="heading-tertiary">AIR MANAGEMENT</h3>
+              </header>
+              <p class="text-body">
+                Easily view and control smart devices that everyone in the place
+                can access.
+              </p>
+              <a href="#AirManagement" class="iotbtn iotbtn--secondary">More</a>
+            </div>
+          </article>
+
+          <!-- Center Column -->
+          <div class="feature-group feature-group--center">
+            <a
+              href="https://play.google.com/store/apps/details?id=ao.daikin.remoapp&hl=en-US"
+              class="iotbtn iotbtn--primary"
+              aria-label="Download app from Google Play Store"
+            >
+              Download now
+              <span class="iotbtn__arrow">
+                <img
+                  class="iotbtn__arrow-icon"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/arrow.png?raw=true"
+                  alt=""
+                />
+              </span>
+            </a>
+
+            <figure class="phone-showcase">
+              <div class="phone-showcase__aura-container">
+                <div class="phone-showcase__aura"></div>
+              </div>
+              <img
+                class="phone-showcase__image"
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/introduction.png?raw=true"
+                alt="App interface preview showing main dashboard"
+              />
+            </figure>
+          </div>
+
+          <!-- Right Column -->
+          <article class="feature-group feature-group--right">
+            <div class="feature-item">
+              <header class="feature-item__header feature-item__header--row">
+                <img
+                  class="feature-item__icon"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/timer.png?raw=true"
+                  alt="Timer icon"
+                />
+                <h3 class="heading-tertiary">SCHEDULE</h3>
+              </header>
+              <p class="text-body">
+                Smart schedules help your on-site devices run on a routine basis
+                automatically.
+              </p>
+              <a href="#Schedule" class="iotbtn iotbtn--secondary">More</a>
+            </div>
+
+            <div class="feature-item">
+              <header class="feature-item__header feature-item__header--col">
+                <div class="image-grid image-grid--2-cols">
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/energy1.png?raw=true"
+                    alt="Energy monitoring icon 1"
+                  />
+                  <img
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/energy2.png?raw=true"
+                    alt="Energy monitoring icon 2"
+                  />
+                </div>
+                <div class="feature-item__header feature-item__header--row">
+                  <img
+                    class="feature-item__icon"
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/introduce/vector.png?raw=true"
+                    alt="Vector icon"
+                  />
+                  <h3 class="heading-tertiary">ENERGY MONITORING</h3>
+                </div>
+              </header>
+              <p class="text-body">
+                Track your daily energy usage and compare it with previous
+                periods to save more efficiently.
+              </p>
+              <a href="#Energy" class="iotbtn iotbtn--secondary">More</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Air Management Section -->
+      <section id="AirManagement" class="section section--features">
+        <header class="feature-header">
+          <h2 class="heading-secondary">Features</h2>
+        </header>
+
+        <article class="feature-card">
+          <header class="section-header">
+            <h2 class="heading-secondary">AIR MANAGEMENT</h2>
+            <p class="text-lead">
+              This feature allows you to conveniently manage your home devices
+              and monitor their status and performance in real time.
+            </p>
+          </header>
+
+          <div class="grid grid--3-cols">
+            <!-- Left Column -->
+            <div class="feature-group feature-group--left">
+              <div class="feature-item">
+                <header class="feature-item__header feature-item__header--col">
+                  <h4 class="heading-tertiary">Recently Used Control</h4>
+                  <div class="image-grid image-grid--4-cols">
+                    <figure>
+                      <img
+                        src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/aircondition.png?raw=true"
+                        alt="Air Condition"
+                      />
+                      <figcaption>Air Condition</figcaption>
+                    </figure>
+                    <figure>
+                      <img
+                        src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/apuaroma.png?raw=true"
+                        alt="Apu Aroma"
+                      />
+                      <figcaption>Apu Aroma</figcaption>
+                    </figure>
+                    <figure>
+                      <img
+                        src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/aircreator.png?raw=true"
+                        alt="Air Creator"
+                      />
+                      <figcaption>Air Creator</figcaption>
+                    </figure>
+                    <figure>
+                      <img
+                        src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/airpurifier.png?raw=true"
+                        alt="Air purifier"
+                      />
+                      <figcaption>Air purifier</figcaption>
+                    </figure>
+                  </div>
+                </header>
+                <p class="text-body">
+                  Save time with a list of your most recently used controls,
+                  ready for quick access and seamless operation.
+                </p>
+              </div>
+
+              <div class="feature-item">
+                <header class="feature-item__header feature-item__header--row">
+                  <img
+                    class="feature-item__icon"
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/list_icon.png?raw=true"
+                    alt="List view icon"
+                  />
+                  <h4 class="heading-tertiary">List View</h4>
+                </header>
+                <div class="image-grid image-grid--listview">
+                  <div class="listview-item">
+                    <div class="listview-item__content">
+                      <p class="listview-item__value">25</p>
+                      <span class="listview-item__unit">°C</span>
+                    </div>
+                    <h5>Temperature</h5>
+                  </div>
+                  <div class="listview-item">
+                    <div class="listview-item__content">
+                      <p class="listview-item__value">45</p>
+                      <span class="listview-item__unit">%</span>
+                    </div>
+                    <h5>Humidity</h5>
+                  </div>
+                  <div class="listview-item">
+                    <div class="listview-item__content">
+                      <p class="listview-item__value text-highlight">Good</p>
+                    </div>
+                    <h5>Air quality</h5>
+                  </div>
+                  <div class="listview-item">
+                    <div class="listview-item__content">
+                      <p class="listview-item__value">1</p>
+                      <span class="listview-item__unit">μg/m³</span>
+                    </div>
+                    <h5>PM 2.5</h5>
+                  </div>
+                </div>
+                <p class="text-body">
+                  This view allows users to monitor various environmental
+                  conditions in the room, including Temperature and Humidity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Center Column -->
+            <figure class="feature-group feature-group--center">
+              <img
+                class="phone-display"
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/airmanagement.png?raw=true"
+                alt="Air management interface preview"
+              />
+            </figure>
+
+            <!-- Right Column -->
+            <div class="feature-group feature-group--right">
+              <div class="feature-item">
+                <header class="feature-item__header feature-item__header--col">
+                  <h4 class="heading-tertiary">Notifications History</h4>
+                  <div class="feature-item__header feature-item__header--row">
+                    <img
+                      class="feature-item__icon"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/aircon_black.png?raw=true"
+                      alt="Air Condition icon"
+                    />
+                    <p class="text-body">
+                      <strong>Air Condition:</strong> Room temperature is high.
+                      Please start COOL operation.
+                    </p>
+                  </div>
+                  <div class="feature-item__header feature-item__header--row">
+                    <img
+                      class="feature-item__icon"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/apu_black.png?raw=true"
+                      alt="Air Purifier icon"
+                    />
+                    <p class="text-body">
+                      <strong>Air Purifier:</strong> PM 2.5 is high. Please
+                      start Turbo operation.
+                    </p>
+                  </div>
+                </header>
+                <p class="text-body">
+                  Easily access past notifications anytime, with all messages
+                  stored in one place for quick tracking and reference.
+                </p>
+              </div>
+
+              <div class="feature-item">
+                <header class="feature-item__header feature-item__header--row">
+                  <img
+                    class="feature-item__icon"
+                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/grid_icon.png?raw=true"
+                    alt="Grid view icon"
+                  />
+                  <h5 class="heading-tertiary">Grid View</h5>
+                </header>
+                <div class="feature-item__header feature-item__header--row">
+                  <div class="feature-item__header feature-item__header--row">
+                    <img
+                      class="feature-item__icon"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/airpurifier.png?raw=true"
+                      alt="Air Condition icon"
+                    />
+                    <p class="text-body">Air Condition</p>
+                  </div>
+                  <div class="feature-item__header feature-item__header--row">
+                    <img
+                      class="feature-item__icon"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/airmanagement/airpurifier.png?raw=true"
+                      alt="Air Purifier icon"
+                    />
+                    <p class="text-body">Air Purifier</p>
+                  </div>
+                </div>
+                <p class="text-body">
+                  This view is used to display the devices located in the room.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Air Card Section -->
+      <section id="AirCard" class="section section--features">
+        <article class="feature-card">
+          <header class="section-header">
+            <h2 class="heading-secondary">AIR CARD</h2>
+            <p class="text-lead">
+              <span class="text-highlight">Experience</span> the next evolution
+              of control. Discover a new level of comfort and performance,
+              unlike anything before.
+            </p>
+          </header>
+
+          <div class="grid grid--2-cols" data-slider>
+            <div class="feature-group feature-group--left">
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--aircard"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/goodsleep.png?raw=true"
+                  alt="Good Sleep Air Card interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--aircard"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/chill.png?raw=true"
+                  alt="Chill Out Air Card interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--aircard"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/focus.png?raw=true"
+                  alt="Focus Air Card interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--aircard"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/fitness.png?raw=true"
+                  alt="Fitness Air Card interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--aircard"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/wildcard.png?raw=true"
+                  alt="Customize Air Card interface"
+                />
+              </div>
+            </div>
+
+            <div class="feature-group feature-group--right">
+              <div class="slider-description">
+                <div class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--row"
+                  >
+                    <img
+                      class="feature-item__icon feature-item__icon--large"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/card_icon.png?raw=true"
+                      alt="Air Card icon"
+                    />
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">GOOD SLEEP</h3>
+                      <p class="text-body">Air Card</p>
+                    </div>
+                  </header>
+                  <p class="text-body">
+                    Good sleep Air card creates a time-based ambiance from
+                    bedtime to your wake-up time.
+                  </p>
+                </div>
+              </div>
+              <div class="slider-description">
+                <div class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--row"
+                  >
+                    <img
+                      class="feature-item__icon feature-item__icon--large"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/card_icon.png?raw=true"
+                      alt="Air Card icon"
+                    />
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">CHILL OUT</h3>
+                      <p class="text-body">Air Card</p>
+                    </div>
+                  </header>
+                  <p class="text-body">
+                    Chill out Air card creates a relaxing atmosphere for you.
+                  </p>
+                </div>
+              </div>
+              <div class="slider-description">
+                <div class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--row"
+                  >
+                    <img
+                      class="feature-item__icon feature-item__icon--large"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/card_icon.png?raw=true"
+                      alt="Air Card icon"
+                    />
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">FOCUS</h3>
+                      <p class="text-body">Air Card</p>
+                    </div>
+                  </header>
+                  <p class="text-body">
+                    Focus Air card creates an atmosphere to help you focus
+                    better.
+                  </p>
+                </div>
+              </div>
+              <div class="slider-description">
+                <div class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--row"
+                  >
+                    <img
+                      class="feature-item__icon feature-item__icon--large"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/card_icon.png?raw=true"
+                      alt="Air Card icon"
+                    />
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">FITNESS</h3>
+                      <p class="text-body">Air Card</p>
+                    </div>
+                  </header>
+                  <p class="text-body">
+                    Fitness Air card energizes your workout.
+                  </p>
+                </div>
+              </div>
+              <div class="slider-description">
+                <div class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--row"
+                  >
+                    <img
+                      class="feature-item__icon feature-item__icon--large"
+                      src="https://github.com/voicetestdit22-bit/web-images/blob/main/aircard/card_icon.png?raw=true"
+                      alt="Air Card icon"
+                    />
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">CUSTOMIZE</h3>
+                      <p class="text-body">Air Card</p>
+                    </div>
+                  </header>
+                  <p class="text-body">Enjoy with your customized air card.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-nav-wrapper"></div>
+          <footer class="section-footer">
+            This function is supported on specific product models only.
+          </footer>
+        </article>
+      </section>
+
+      <!-- Schedule Section -->
+      <section id="Schedule" class="section section--features">
+        <article class="feature-card">
+          <header class="section-header">
+            <h2 class="heading-secondary">SCHEDULE</h2>
+            <p class="text-lead">
+              This feature allows the air conditioner to turn on or off
+              automatically at set times, such as during the night or in the
+              morning, using a time-based schedule.
+            </p>
+          </header>
+
+          <div class="grid grid--3-cols">
+            <!-- Left Column -->
+            <div class="feature-group feature-group--left">
+              <figure class="schedule-container">
+                <img
+                  class="schedule-container__img--timezone"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/schedule/timezone.png?raw=true"
+                  alt="Time zone selection interface"
+                />
+              </figure>
+              <header class="feature-item__header feature-item__header--col">
+                <h4 class="heading-tertiary">Time Zone</h4>
+                <p class="text-body">
+                  Choose any time zone around the world and keep your devices
+                  perfectly in sync.
+                </p>
+              </header>
+            </div>
+
+            <!-- Center Column -->
+            <!-- <div class="feature-group feature-group--center">
+              <figure class="schedule-container">
+                <img
+                  class="schedule-container__img--list"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/schedule/timezone.png?raw=true"
+                  alt="Schedule list icon"
+                />
+                <h3 class="heading-tertiary">6 TASKS</h3>
+                <p class="text-body">Run up to 6 times/day</p>
+              </figure>
+              <header class="feature-item__header feature-item__header--col">
+                <h4 class="heading-tertiary">Schedule List</h4>
+                <p class="text-body">
+                  Schedules are automatically grouped for a cleaner view and
+                  smoother management.
+                </p>
+              </header>
+            </div> -->
+
+            <!-- Right Column -->
+            <div class="feature-group feature-group--right">
+              <figure class="schedule-container">
+                <img
+                  class="schedule-container__img--add"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/schedule/add.png?raw=true"
+                  alt="Add new schedule interface"
+                />
+              </figure>
+              <header class="feature-item__header feature-item__header--col">
+                <h4 class="heading-tertiary">Concept Add Schedule</h4>
+                <p class="text-body">
+                  Add new schedules seamlessly and make your daily routines
+                  smarter than ever.
+                </p>
+              </header>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Energy Monitoring Section -->
+      <section id="Energy" class="section section--features">
+        <article class="feature-card">
+          <header class="section-header">
+            <h2 class="heading-secondary">ENERGY MONITORING</h2>
+            <p class="text-lead">
+              Know your power, live smarter.<br />Keep track of your energy and
+              make every day more efficient.
+            </p>
+          </header>
+
+          <div class="grid grid--2-cols" data-slider>
+            <div class="feature-group feature-group--left feature-group--wide">
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--energy"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/energy/energy1.png?raw=true"
+                  alt="Energy usage summary interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--energy"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/energy/energy2.png?raw=true"
+                  alt="Energy usage overview interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--energy"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/energy/energy3.png?raw=true"
+                  alt="Energy usage history interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--energy"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/energy/energy4.png?raw=true"
+                  alt="Energy pie chart summary interface"
+                />
+              </div>
+              <div class="slider-item">
+                <img
+                  class="phone-display phone-display--energy"
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/energy/energy5.png?raw=true"
+                  alt="Energy usage limitation interface"
+                />
+              </div>
+            </div>
+
+            <div class="feature-group feature-group--right feature-group--wide">
+              <div class="slider-description">
+                <article class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--col"
+                  >
+                    <span class="badge">Usage Summary</span>
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">See it all, instantly</h3>
+                      <p class="text-body">
+                        Simply open the Usage Summary to see an instant overview
+                        of all your device usage, with key insights to help you
+                        understand patterns and manage your devices smartly.
+                      </p>
+                    </div>
+                  </header>
+                  <hr class="divider" />
+                  <div class="grid grid--energy-description">
+                    <div>
+                      <h5 class="heading-tertiary">Today Used</h5>
+                      <p class="text-body">
+                        Calculate and display real-time usage, allowing you to
+                        track your device's daily energy consumption with
+                        precision.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 class="heading-tertiary">Month Used</h5>
+                      <p class="text-body">
+                        View your monthly usage overview to better understand
+                        your energy consumption patterns.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="slider-description">
+                <article class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--col"
+                  >
+                    <span class="badge">Usage Overview</span>
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">Your Energy at a Glance</h3>
+                      <p class="text-body">
+                        Track your energy usage through an intuitive graph that
+                        helps you visualize your consumption clearly.
+                      </p>
+                    </div>
+                  </header>
+                  <hr class="divider" />
+                  <div class="grid grid--energy-description">
+                    <div>
+                      <h5 class="heading-tertiary">
+                        Compare (Support month & year)
+                      </h5>
+                      <p class="text-body">
+                        Compare monthly or yearly data to discover usage trends
+                        and energy efficiency.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="slider-description">
+                <article class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--col"
+                  >
+                    <span class="badge">Usage History</span>
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">Past Usage Records</h3>
+                      <p class="text-body">
+                        Easily access your device usage history with clear,
+                        intuitive details that help you track patterns and
+                        manage energy use more effectively.
+                      </p>
+                    </div>
+                  </header>
+                  <hr class="divider" />
+                  <div class="grid grid--energy-description">
+                    <div>
+                      <h5 class="heading-tertiary">
+                        Activity Summary (Support month & year)
+                      </h5>
+                      <p class="text-body">
+                        View device activity for the current month and year,
+                        plus the previous period for easy comparison.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="slider-description">
+                <article class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--col"
+                  >
+                    <span class="badge">Pie Chart Summary</span>
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">Smart Analysis</h3>
+                      <p class="text-body">
+                        Gain a deeper understanding of your energy consumption
+                        through an intelligent pie chart that automatically
+                        calculates and visualizes your usage percentage for each
+                        category.
+                      </p>
+                    </div>
+                  </header>
+                  <hr class="divider" />
+                  <div class="grid grid--energy-description">
+                    <div>
+                      <h5 class="heading-tertiary">Device-based Insight</h5>
+                      <p class="text-body">
+                        View energy consumption breakdowns for each device only
+                        giving you clear insight into how each one contributes
+                        to your total usage.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <div class="slider-description">
+                <article class="feature-item">
+                  <header
+                    class="feature-item__header feature-item__header--col"
+                  >
+                    <span class="badge">Usage Limitation</span>
+                    <div class="feature-item__header feature-item__header--col">
+                      <h3 class="heading-tertiary">Usage Limitation Mode</h3>
+                      <p class="text-body">
+                        Choose how much control or limitation you want – each
+                        mode offers a different balance between performance and
+                        energy efficiency.
+                      </p>
+                    </div>
+                  </header>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="slider-nav-wrapper"></div>
+          <footer class="section-footer">
+            This function is supported on specific product models only.
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      // Initialize all sliders on the page
+      document.addEventListener("DOMContentLoaded", function () {
+        const sliders = document.querySelectorAll("[data-slider]");
+        sliders.forEach((slider) => initSlider(slider));
+      });
+
+      function initSlider(sliderContainer) {
+        const items = sliderContainer.querySelectorAll(".slider-item");
+        const descriptions = sliderContainer.querySelectorAll(
+          ".slider-description"
+        );
+        let currentIndex = 0;
+
+        // Create navigation container
+        const navContainer = document.createElement("nav");
+        navContainer.className = "slider-nav";
+        navContainer.setAttribute("aria-label", "Slider navigation");
+
+        // Create dots container
+        const dotsContainer = document.createElement("div");
+        dotsContainer.className = "slider-nav__dots";
+        dotsContainer.setAttribute("role", "tablist");
+
+        // Create dots
+        const dots = [];
+        items.forEach((item, index) => {
+          const dot = document.createElement("button");
+          dot.className = "slider-nav__dot";
+          dot.setAttribute("role", "tab");
+          dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+          dot.setAttribute("aria-selected", index === 0 ? "true" : "false");
+          dot.addEventListener("click", () => showSlide(index));
+          dots.push(dot);
+          dotsContainer.appendChild(dot);
+        });
+
+        // Create arrows container
+        const arrowsContainer = document.createElement("div");
+        arrowsContainer.className = "slider-nav__arrows";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.className = "slider-nav__arrow";
+        prevBtn.innerHTML = "&lt;";
+        prevBtn.setAttribute("aria-label", "Previous slide");
+
+        const nextBtn = document.createElement("button");
+        nextBtn.className = "slider-nav__arrow";
+        nextBtn.innerHTML = "&gt;";
+        nextBtn.setAttribute("aria-label", "Next slide");
+
+        arrowsContainer.appendChild(prevBtn);
+        arrowsContainer.appendChild(nextBtn);
+
+        navContainer.appendChild(dotsContainer);
+        navContainer.appendChild(arrowsContainer);
+        sliderContainer.appendChild(navContainer);
+
+        // Show specific slide
+        function showSlide(index) {
+          items.forEach((item, i) => {
+            if (i === index) {
+              item.classList.add("slider-item--active");
+              item.setAttribute("aria-hidden", "false");
+            } else {
+              item.classList.remove("slider-item--active");
+              item.setAttribute("aria-hidden", "true");
+            }
+          });
+
+          descriptions.forEach((desc, i) => {
+            if (i === index) {
+              desc.classList.add("slider-description--active");
+              desc.setAttribute("aria-hidden", "false");
+            } else {
+              desc.classList.remove("slider-description--active");
+              desc.setAttribute("aria-hidden", "true");
+            }
+          });
+
+          dots.forEach((dot, i) => {
+            if (i === index) {
+              dot.classList.add("slider-nav__dot--active");
+              dot.setAttribute("aria-selected", "true");
+            } else {
+              dot.classList.remove("slider-nav__dot--active");
+              dot.setAttribute("aria-selected", "false");
+            }
+          });
+
+          currentIndex = index;
+        }
+
+        // Navigation handlers
+        prevBtn.addEventListener("click", () => {
+          const newIndex =
+            currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+          showSlide(newIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+          const newIndex =
+            currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+          showSlide(newIndex);
+        });
+
+        // Keyboard navigation
+        sliderContainer.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            const newIndex =
+              currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+            showSlide(newIndex);
+          } else if (e.key === "ArrowRight") {
+            e.preventDefault();
+            const newIndex =
+              currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+            showSlide(newIndex);
+          }
+        });
+
+        // Initialize first slide
+        if (items.length > 0) {
+          showSlide(0);
+        }
+      }
+    </script>
+  </body>
+</html>
