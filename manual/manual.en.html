@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manual</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "SukhumvitSet";
+        line-height: 1.6;
+        color: #000;
+        background: #fff;
+        overflow-x: hidden;
+        width: 100%;
+        filter: grayscale(0%);
+      }
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1f97d4, #00b4ff);
+        z-index: 9999;
+        transition: width 0.1s ease;
+      }
+      .container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <div class="container">
+        
+    </div>
+
+  </body>
+</html>
