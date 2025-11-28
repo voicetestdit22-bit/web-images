@@ -171,7 +171,10 @@
         text-decoration: none;
         z-index: 2;
       }
-
+      #features .iotbtn{
+        padding: 8px 16px;
+        margin-top: auto;
+      }
       .iotbtn:hover {
         background: #000;
         color: #fff;
@@ -281,12 +284,17 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         margin: 0px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .feature-card:last-child {
         margin-bottom: 32px;
       }
-
+      #features .feature-card {
+        height: 400px;
+      }
       /* .feature-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
@@ -298,7 +306,7 @@
         margin-bottom: 16px;
         transition: transform 0.3s ease;
       }
-/* 
+      /* 
       .feature-card:hover .feature-icon {
         transform: scale(1.1) rotate(5deg);
       } */
@@ -472,9 +480,12 @@
 
       /* Responsive */
       @media (max-width: 768px) {
+        #features .feature-card {
+          height: auto;
+        }
         #energy .description {
-        width: auto;
-      }
+          width: auto;
+        }
         .section-footer {
           padding: 8px 8px;
           border-radius: 40px;
@@ -571,7 +582,7 @@
             onclick="DownloadRedirection()"
           >
             Download now
-            <span class="iotbtn__arrow">
+            <span class="btn__arrow">
               <img
                 src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/arrow.png?raw=true"
                 alt=""
@@ -588,7 +599,7 @@
       </section>
 
       <!-- Features Section -->
-      <section class="section">
+      <section id="features" class="section">
         <div class="feature-header">
           <h2 class="heading-secondary">FEATURES</h2>
         </div>
