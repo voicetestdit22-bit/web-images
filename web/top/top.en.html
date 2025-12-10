@@ -1,266 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Smart Home App - Enhanced UX/UI</title>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        /* outline: 1px solid rgba(255, 0, 0, 0.1); */
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Home App - Enhanced UX/UI</title>
 
-      html {
-        scroll-behavior: smooth;
-      }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /* outline: 1px solid rgba(255, 0, 0, 0.1); */
+    }
 
-      body {
-        font-family: "SukhumvitSet";
-        line-height: 1.6;
-        color: #000;
-        background: #fff;
-        overflow-x: hidden;
-        width: 100%;
-        filter: grayscale(0%);
-      }
-      .slider-dots {
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-      }
-      /* Scroll Progress Bar */
-      .scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #1f97d4, #00b4ff);
-        z-index: 9999;
-        transition: width 0.1s ease;
-      }
+    html {
+      scroll-behavior: smooth;
+    }
 
-      /* Container */
-      .container {
-        width: 100%;
-        margin: 0 auto;
-        padding: 48px 24px;
-      }
+    body {
+      font-family: "SukhumvitSet";
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      overflow-x: hidden;
+      width: 100%;
+      filter: grayscale(0%);
+    }
 
-      /* Section Animations */
-      .section {
-        will-change: transform, opacity;
-        backface-visibility: hidden;
-        margin-bottom: 80px;
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 0.8s ease forwards;
-        border-radius: 8px;
-      }
-      .section.intro {
-        margin-bottom: 0px;
-        padding: 0px;
-        background-color: white;
-      }
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+    .slider-dots {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+    }
 
-      /* Typography */
-      .heading-primary {
-        font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #000 0%, #333 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1f97d4, #00b4ff);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
 
-      .heading-secondary {
-        font-size: clamp(1.5rem, 4vw, 2rem);
-        font-weight: 700;
-      }
+    /* Container */
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
 
-      .text-lead {
-        font-size: clamp(1rem, 2.5vw, 1.5rem);
-        color: #333;
-        text-align: center;
-        max-width: 784px;
-        margin: 0 auto 2rem;
-      }
+    /* Section Animations */
+    .section {
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease forwards;
+      border-radius: 8px;
+    }
 
-      .text-highlight {
-        color: #1f97d4;
-        position: relative;
-      }
+    .section.intro {
+      margin-bottom: 0px;
+      padding: 0px;
+      background-color: white;
+    }
 
-      .text-highlight::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #1f97d4, #00b4ff);
-        transition: width 0.5s ease;
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      .text-highlight:hover::after {
-        width: 100%;
-      }
+    /* Typography */
+    .heading-primary {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #000 0%, #333 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-      /* Header */
-      .feature-header {
-        background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-        color: #fff;
-        text-align: center;
-        padding: 32px;
-        margin-bottom: 32px;
-        border-radius: 16px;
-        position: relative;
-        overflow: hidden;
-      }
+    .heading-secondary {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+    }
 
-      .feature-header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    .text-lead {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: #333;
+      text-align: center;
+      max-width: 784px;
+      margin: 0 auto 2rem;
+    }
+
+    .text-highlight {
+      color: #1f97d4;
+      position: relative;
+    }
+
+    .text-highlight::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #1f97d4, #00b4ff);
+      transition: width 0.5s ease;
+    }
+
+    .text-highlight:hover::after {
+      width: 100%;
+    }
+
+    /* Header */
+    .feature-header {
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+      color: #fff;
+      text-align: center;
+      padding: 32px;
+      margin-bottom: 32px;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
           transparent,
           rgba(255, 255, 255, 0.1),
-          transparent
-        );
-        animation: shimmer 3s infinite;
+          transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    .schedule-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .schedule-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 320px;
+    }
+
+    .schedule-image {
+      background-color: rgba(247, 247, 247, 1);
+      padding: 16px;
+      width: 100%;
+      height: 290px;
+      margin-bottom: 24px;
+      border-radius: 16px;
+    }
+
+    .schedule-image.center {
+      display: flex;
+      justify-content: center;
+      /* center horizontally */
+      align-items: center;
+    }
+
+    @keyframes shimmer {
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Buttons */
+    .iotbtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 40px;
+      border: 2px solid #000;
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      z-index: 2;
+    }
+
+    #features .iotbtn {
+      padding: 8px 16px;
+      margin-top: auto;
+    }
+
+    .iotbtn:hover {
+      background: #000;
+      color: #fff;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .iotbtn--primary {
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+      color: #fff;
+      border: none;
+      gap: 1rem;
+      min-width: 200px;
+    }
+
+    .iotbtn__arrow {
+      width: 36px;
+      height: 36px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s infinite;
+    }
+
+    .iotbtn__arrow img {
+      width: 14px;
+      height: 14px;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
       }
 
-      @keyframes shimmer {
-        100% {
-          left: 100%;
-        }
+      50% {
+        transform: scale(1.1);
       }
+    }
 
-      /* Buttons */
-      .iotbtn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px 32px;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 40px;
-        border: 2px solid #000;
-        background: #fff;
-        color: #000;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        z-index: 2;
-      }
-      #features .iotbtn{
-        padding: 8px 16px;
-        margin-top: auto;
-      }
-      .iotbtn:hover {
-        background: #000;
-        color: #fff;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      }
+    /* Phone Showcase */
+    .phone-showcase {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      height: 100%;
+      /* margin: 48px 0; */
+    }
 
-      .iotbtn--primary {
-        background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-        color: #fff;
-        border: none;
-        gap: 1rem;
-        min-width: 200px;
-      }
+    .phone-showcase__image {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.5s ease;
+    }
 
-      .iotbtn__arrow {
-        width: 36px;
-        height: 36px;
-        border: 2px solid #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: pulse 2s infinite;
-      }
+    .phone-showcase:hover .phone-showcase__image {
+      transform: scale(1.05);
+    }
 
-      .iotbtn__arrow img {
-        width: 14px;
-        height: 14px;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      /* Phone Showcase */
-      .phone-showcase {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-        height: 100%;
-        /* margin: 48px 0; */
-      }
-
-      .phone-showcase__image {
-        max-width: 300px;
-        width: 100%;
-        height: auto;
-        position: relative;
-        z-index: 2;
-        transition: transform 0.5s ease;
-      }
-
-      .phone-showcase:hover .phone-showcase__image {
-        transform: scale(1.05);
-      }
-
-      .phone-showcase__aura {
-        position: absolute;
-        bottom: -100px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(
-          circle,
+    .phone-showcase__aura {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle,
           #0094e2 0%,
           #0066cc 40%,
-          transparent 70%
-        );
-        filter: blur(80px);
-        border-radius: 50%;
-        opacity: 0.6;
-        z-index: 0;
-        /* animation: rotate-aura 20s linear infinite; */
-      }
+          transparent 70%);
+      filter: blur(80px);
+      border-radius: 50%;
+      opacity: 0.6;
+      z-index: 0;
+      /* animation: rotate-aura 20s linear infinite; */
+    }
 
-      /* @keyframes rotate-aura {
+    /* @keyframes rotate-aura {
         from {
           transform: translateX(-50%) rotate(0deg);
         }
@@ -269,343 +302,362 @@
         }
       } */
 
-      /* Feature Grid */
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 32px;
-        margin: 48px 0;
-      }
+    /* Feature Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 48px 0;
+    }
 
-      .feature-card {
-        padding: 32px;
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-        margin: 0px 16px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .feature-card {
+      padding: 32px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      margin: 0px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-      .feature-card:last-child {
-        margin-bottom: 32px;
-      }
-      #features .feature-card {
-        height: 400px;
-      }
-      /* .feature-card:hover {
+    .feature-card:last-child {
+      margin-bottom: 32px;
+    }
+
+    #features .feature-card {
+      height: 400px;
+    }
+
+    /* .feature-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
       } */
 
-      .feature-icon {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 16px;
-        transition: transform 0.3s ease;
-      }
-      /* 
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    /* 
       .feature-card:hover .feature-icon {
         transform: scale(1.1) rotate(5deg);
       } */
 
-      /* Slider */
-      .slider {
-        position: relative;
-        margin: 48px 0;
+    /* Slider */
+    .slider {
+      position: relative;
+      margin: 48px 0;
+    }
+
+    .slider-content {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .slider-item {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      animation: slideIn 0.5s ease;
+      min-height: 800px;
+    }
+
+    .slider-item.aircard {
+      flex-direction: row;
+      /* min-height: 965px; */
+    }
+
+    .description {
+      overflow-y: auto;
+      height: fit-content;
+    }
+
+    .slider-item--active {
+      display: flex;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
       }
 
-      .slider-content {
-        display: flex;
-        gap: 48px;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
+      to {
+        opacity: 1;
+        transform: translateX(0);
       }
+    }
 
-      .slider-item {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-        animation: slideIn 0.5s ease;
-        min-height: 800px;
-      }
-      .slider-item.aircard {
-        flex-direction: row;
-        /* min-height: 965px; */
-      }
-      .description {
-        overflow-y: auto;
-        height: fit-content;
-      }
-      .slider-item--active {
-        display: flex;
-      }
+    .aircard .slider-image {
+      max-width: 350px;
+    }
 
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateX(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      .aircard .slider-image {
-        max-width: 350px;
-      }
-      .aircard .description {
-        max-width: 350px;
-      }
-      #energy .description {
-        width: 720px;
-      }
-      .slider-image {
-        max-width: 400px;
-        /* width: 100%; */
-        transition: transform 0.3s ease;
-      }
+    .aircard .description {
+      max-width: 350px;
+    }
 
-      .slider-image:hover {
-        transform: scale(1.03);
-      }
+    #energy .description {
+      width: 720px;
+    }
 
-      .slider-nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        margin-top: 32px;
-      }
+    .slider-image {
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
 
-      .slider-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #ddd;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
+    .slider-image:hover {
+      transform: scale(1.03);
+    }
 
-      .slider-dot:hover {
-        background: #999;
-        transform: scale(1.3);
-      }
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
 
-      .slider-dot--active {
-        background: #000;
-        width: 28px;
-        border-radius: 5px;
-      }
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-      .slider-arrow {
-        position: absolute;
-        top: 30%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border: 2px solid #000;
-        background: #fff;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 24px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
+    .slider-dot:hover {
+      background: #999;
+      transform: scale(1.3);
+    }
 
-      .slider-arrow:hover:not(:disabled) {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.4);
+    .slider-dot--active {
+      background: #000;
+      width: 28px;
+      border-radius: 5px;
+    }
 
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      }
+    .slider-arrow {
+      position: absolute;
+      top: 30%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border: 2px solid #000;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-      .slider-arrow:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-      }
-      .slider-arrow--prev {
-        left: 10%;
-      }
+    .slider-arrow:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
 
-      .slider-arrow--next {
-        right: 10%;
-      }
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
 
-      /* Footer */
-      .section-footer {
-        background: linear-gradient(135deg, #00b4ff 0%, #0094e2 100%);
-        color: #fff;
-        text-align: center;
-        padding: 16px 32px;
-        border-radius: 40px;
-        margin: 32px auto;
-        max-width: 600px;
-        box-shadow: 0 4px 12px rgba(0, 180, 255, 0.3);
-        transition: transform 0.3s ease;
-      }
+    .slider-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
 
-      /* .section-footer:hover {
+    .slider-arrow--prev {
+      left: 10%;
+    }
+
+    .slider-arrow--next {
+      right: 10%;
+    }
+
+    /* Footer */
+    .section-footer {
+      background: linear-gradient(135deg, #00b4ff 0%, #0094e2 100%);
+      color: #fff;
+      text-align: center;
+      padding: 16px 32px;
+      border-radius: 40px;
+      margin: 32px auto;
+      max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0, 180, 255, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    /* .section-footer:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(0, 180, 255, 0.4);
       } */
 
-      /* Badge */
-      .badge {
-        display: inline-block;
-        padding: 8px 16px;
-        border: 2px solid #000;
-        border-radius: 20px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        transition: all 0.3s ease;
+    /* Badge */
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 2px solid #000;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      background: #000;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #features .feature-card {
+        height: auto;
       }
 
-      .badge:hover {
-        background: #000;
-        color: #fff;
-        transform: translateY(-2px);
+      #energy .description {
+        width: auto;
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        #features .feature-card {
-          height: auto;
-        }
-        #energy .description {
-          width: auto;
-        }
-        .section-footer {
-          padding: 8px 8px;
-          border-radius: 40px;
-          max-width: 300px;
-        }
-        .aircard .slider-image {
-          max-width: 240px;
-        }
-        .aircard .description {
-          min-height: 124px;
-        }
-        .slider-item.aircard {
-          flex-direction: column;
-        }
-        #aircard .slider-item {
-          min-height: 450px;
-        }
-        .slider-item {
-          min-height: 900px;
-        }
-        .container {
-          padding: 24px 16px;
-        }
-
-        .phone-showcase__aura {
-          width: 400px;
-          height: 400px;
-          bottom: -80px;
-        }
-
-        .slider-content {
-          flex-direction: column;
-        }
-
-        .feature-header > .heading-secondary {
-          padding-top: 0px;
-        }
-        .heading-secondary {
-          padding-top: 32px;
-        }
-        .feature-grid {
-          grid-template-columns: 1fr;
-        }
-        .description {
-          overflow-y: auto;
-        }
-        .slider-arrow {
-          width: 42px;
-          height: 42px;
-          font-size: 20px;
-        }
-
-        .slider-arrow--prev {
-          left: 0px;
-          border: none;
-          background: rgba(255, 255, 255, 0.01);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(100px);
-          justify-self: flex-end;
-        }
-
-        .slider-arrow--next {
-          right: 0px;
-          border: none;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(10px);
-        }
+      .section-footer {
+        padding: 8px 8px;
+        border-radius: 40px;
+        max-width: 300px;
       }
-      @media (max-width: 375px) {
-        .phone-showcase__image {
-          max-width: 200px;
-        }
+
+      .aircard .slider-image {
+        max-width: 240px;
       }
-    </style>
-  </head>
-  <body>
-    <div class="scroll-progress" id="scrollProgress"></div>
 
-    <div class="container">
-      <!-- Intro Section -->
-      <section class="section intro">
-        <h1 class="heading-primary">THE NEW APPLICATION</h1>
-        <p class="text-lead">
-          Experience a new level of comfort and control. Smarter, simpler, and
-          more personal – this app connects your lift seamlessly, anytime,
-          anywhere.
-        </p>
+      .aircard .description {
+        min-height: 124px;
+      }
 
-        <div class="phone-showcase">
-          <a
-            href=""
-            class="iotbtn iotbtn--primary"
-            onclick="DownloadRedirection()"
-          >
-            Download now
-            <span class="btn__arrow">
-              <img
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/arrow.png?raw=true"
-                alt=""
-              />
-            </span>
-          </a>
-          <div class="phone-showcase__aura"></div>
-          <img
-            class="phone-showcase__image"
-            src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/introduction.png?raw=true"
-            alt="App Interface"
-          />
-        </div>
-      </section>
+      .slider-item.aircard {
+        flex-direction: column;
+      }
 
-      <!-- Features Section -->
-      <section id="features" class="section">
-        <div class="feature-header">
-          <h2 class="heading-secondary">FEATURES</h2>
-        </div>
+      #aircard .slider-item {
+        min-height: 450px;
+      }
 
-        <div class="feature-grid">
-          <!-- <div class="feature-card">
+      .slider-item {
+        min-height: 900px;
+      }
+
+      .container {
+        padding: 24px 16px;
+      }
+
+      .phone-showcase__aura {
+        width: 400px;
+        height: 400px;
+        bottom: -80px;
+      }
+
+      .slider-content {
+        flex-direction: column;
+      }
+
+      .feature-header>.heading-secondary {
+        padding-top: 0px;
+      }
+
+      .heading-secondary {
+        padding-top: 32px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .description {
+        overflow-y: auto;
+      }
+
+      .slider-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+      }
+
+      .slider-arrow--prev {
+        left: 0px;
+        border: none;
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(100px);
+        justify-self: flex-end;
+      }
+
+      .slider-arrow--next {
+        right: 0px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    @media (max-width: 375px) {
+      .phone-showcase__image {
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="container">
+    <!-- Intro Section -->
+    <section class="section intro">
+      <h1 class="heading-primary">THE NEW APPLICATION</h1>
+      <p class="text-lead">
+        Experience a new level of comfort and control. Smarter, simpler, and
+        more personal – this app connects your lift seamlessly, anytime,
+        anywhere.
+      </p>
+
+      <div class="phone-showcase">
+        <a href="" class="iotbtn iotbtn--primary" onclick="DownloadRedirection()">
+          Download now
+          <span class="btn__arrow">
+            <img
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/arrow.png?raw=true"
+              alt="" />
+          </span>
+        </a>
+        <div class="phone-showcase__aura"></div>
+        <img class="phone-showcase__image"
+          src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/introduction.png?raw=true"
+          alt="App Interface" />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+      <div class="feature-header">
+        <h2 class="heading-secondary">FEATURES</h2>
+      </div>
+
+      <div class="feature-grid">
+        <!-- <div class="feature-card">
             <h3 style="margin-bottom: 16px">Air Card</h3>
             <div
               style="
@@ -670,212 +722,178 @@
             <a href="#aircard" class="iotbtn">Learn More</a>
           </div> -->
 
-          <div class="feature-card">
-            <img
-              class="feature-icon"
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/air.png?raw=true"
-              alt="Air Management"
-            />
-            <h3>AIR MANAGEMENT</h3>
-            <p>
-              Easily view and control smart devices that everyone in the place
-              can access.
-            </p>
-            <a href="#airmanagement" class="iotbtn">Learn More</a>
-          </div>
-
-          <div class="feature-card">
-            <img
-              class="feature-icon"
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/timer.png?raw=true"
-              alt="Schedule"
-            />
-            <h3>SCHEDULE</h3>
-            <p>
-              Smart schedules help your on-site devices run on a routine basis
-              automatically.
-            </p>
-            <a href="#schedule" class="iotbtn">Learn More</a>
-          </div>
-
-          <div class="feature-card">
-            <img
-              class="feature-icon"
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/vector.png?raw=true"
-              alt="Energy"
-            />
-            <h3>ENERGY MONITORING</h3>
-            <p>
-              Track your daily energy usage and compare it with previous periods
-              to save more efficiently.
-            </p>
-            <a href="#energy" class="iotbtn">Learn More</a>
-          </div>
+        <div class="feature-card">
+          <img class="feature-icon"
+            src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/air.png?raw=true"
+            alt="Air Management" />
+          <h3>AIR MANAGEMENT</h3>
+          <p>
+            Easily view and control smart devices that everyone in the place
+            can access.
+          </p>
+          <a href="#airmanagement" class="iotbtn">Learn More</a>
         </div>
-      </section>
 
-      <!-- Air Management Slider -->
-      <section id="airmanagement" class="section">
-        <!-- <div class="feature-header">
+        <div class="feature-card">
+          <img class="feature-icon"
+            src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/timer.png?raw=true"
+            alt="Schedule" />
+          <h3>SCHEDULE</h3>
+          <p>
+            Smart schedules help your on-site devices run on a routine basis
+            automatically.
+          </p>
+          <a href="#schedule" class="iotbtn">Learn More</a>
+        </div>
+
+        <div class="feature-card">
+          <img class="feature-icon"
+            src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/introduce/vector.png?raw=true"
+            alt="Energy" />
+          <h3>ENERGY MONITORING</h3>
+          <p>
+            Track your daily energy usage and compare it with previous periods
+            to save more efficiently.
+          </p>
+          <a href="#energy" class="iotbtn">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Air Management Slider -->
+    <section id="airmanagement" class="section">
+      <!-- <div class="feature-header">
           <h2 class="heading-secondary">AIR MANAGEMENT</h2>
         </div> -->
-        <h2 class="heading-secondary" style="text-align: center">
-          AIR MANAGEMENT
-        </h2>
-        <p class="text-lead">
-          This feature allows you to conveniently manage your home devices and
-          monitor their status and performance in real time.
-        </p>
+      <h2 class="heading-secondary" style="text-align: center">
+        AIR MANAGEMENT
+      </h2>
+      <p class="text-lead">
+        This feature allows you to conveniently manage your home devices and
+        monitor their status and performance in real time.
+      </p>
 
-        <div
-          style="
+      <div style="
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 48px;
             margin: 48px 0;
-          "
-        >
-          <!-- Left Column - Recently Used & List View -->
-          <div style="display: flex; flex-direction: column; gap: 32px">
-            <div class="feature-card">
-              <h3 style="margin-bottom: 16px">Recently Used Control</h3>
-              <div
-                style="
+          ">
+        <!-- Left Column - Recently Used & List View -->
+        <div style="display: flex; flex-direction: column; gap: 32px">
+          <div class="feature-card">
+            <h3 style="margin-bottom: 16px">Recently Used Control</h3>
+            <div style="
                   display: grid;
                   grid-template-columns: repeat(4, 1fr);
                   gap: 12px;
                   margin-bottom: 16px;
-                "
-              >
-                <figure style="text-align: center">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircondition.png?raw=true"
-                    alt="Air Condition"
-                    style="width: 100%; border-radius: 12px; margin-bottom: 8px"
-                  />
-                  <figcaption style="font-size: 0.8rem">
-                    Air Condition
-                  </figcaption>
-                </figure>
-                <figure style="text-align: center">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apuaroma.png?raw=true"
-                    alt="Apu Aroma"
-                    style="width: 100%; border-radius: 12px; margin-bottom: 8px"
-                  />
-                  <figcaption style="font-size: 0.8rem">Apu Aroma</figcaption>
-                </figure>
-                <figure style="text-align: center">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircreator.png?raw=true"
-                    alt="Air Creator"
-                    style="width: 100%; border-radius: 12px; margin-bottom: 8px"
-                  />
-                  <figcaption style="font-size: 0.8rem">Air Creator</figcaption>
-                </figure>
-                <figure style="text-align: center">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/airpurifier.png?raw=true"
-                    alt="Air Purifier"
-                    style="width: 100%; border-radius: 12px; margin-bottom: 8px"
-                  />
-                  <figcaption style="font-size: 0.8rem">
-                    Air Purifier
-                  </figcaption>
-                </figure>
-              </div>
-              <p>
-                Save time with a list of your most recently used controls, ready
-                for quick access and seamless operation.
-              </p>
+                ">
+              <figure style="text-align: center">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircondition.png?raw=true"
+                  alt="Air Condition" style="width: 100%; border-radius: 12px; margin-bottom: 8px" />
+                <figcaption style="font-size: 0.8rem">
+                  Air Condition
+                </figcaption>
+              </figure>
+              <figure style="text-align: center">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apuaroma.png?raw=true"
+                  alt="Apu Aroma" style="width: 100%; border-radius: 12px; margin-bottom: 8px" />
+                <figcaption style="font-size: 0.8rem">Apu Aroma</figcaption>
+              </figure>
+              <figure style="text-align: center">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircreator.png?raw=true"
+                  alt="Air Creator" style="width: 100%; border-radius: 12px; margin-bottom: 8px" />
+                <figcaption style="font-size: 0.8rem">Air Creator</figcaption>
+              </figure>
+              <figure style="text-align: center">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/airpurifier.png?raw=true"
+                  alt="Air Purifier" style="width: 100%; border-radius: 12px; margin-bottom: 8px" />
+                <figcaption style="font-size: 0.8rem">
+                  Air Purifier
+                </figcaption>
+              </figure>
             </div>
+            <p>
+              Save time with a list of your most recently used controls, ready
+              for quick access and seamless operation.
+            </p>
+          </div>
 
-            <div class="feature-card">
-              <div
-                style="
+          <div class="feature-card">
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 12px;
                   margin-bottom: 16px;
-                "
-              >
-                <img
-                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/list_icon.png?raw=true"
-                  alt="List View"
-                  style="width: 40px; height: 40px; border-radius: 8px"
-                />
-                <h3>List View</h3>
-              </div>
-              <div
-                style="
+                ">
+              <img
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/list_icon.png?raw=true"
+                alt="List View" style="width: 40px; height: 40px; border-radius: 8px" />
+              <h3>List View</h3>
+            </div>
+            <div style="
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
                   gap: 24px;
                   margin-bottom: 16px;
-                "
-              >
-                <div>
-                  <div style="display: flex; align-items: baseline; gap: 4px">
-                    <span style="font-size: 2rem; font-weight: 600">25</span>
-                    <span style="font-size: 1rem">°C</span>
-                  </div>
-                  <p style="font-size: 0.9rem">Temperature</p>
+                ">
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 4px">
+                  <span style="font-size: 2rem; font-weight: 600">25</span>
+                  <span style="font-size: 1rem">°C</span>
                 </div>
-                <div>
-                  <div style="display: flex; align-items: baseline; gap: 4px">
-                    <span style="font-size: 2rem; font-weight: 600">45</span>
-                    <span style="font-size: 1rem">%</span>
-                  </div>
-                  <p style="font-size: 0.9rem">Humidity</p>
-                </div>
-                <div>
-                  <div style="display: flex; align-items: baseline; gap: 4px">
-                    <span
-                      style="font-size: 2rem; font-weight: 600; color: #1f97d4"
-                      >Good</span
-                    >
-                  </div>
-                  <p style="font-size: 0.9rem">Air quality</p>
-                </div>
-                <div>
-                  <div style="display: flex; align-items: baseline; gap: 4px">
-                    <span style="font-size: 2rem; font-weight: 600">1</span>
-                    <span style="font-size: 1rem">μg/m³</span>
-                  </div>
-                  <p style="font-size: 0.9rem">PM 2.5</p>
-                </div>
+                <p style="font-size: 0.9rem">Temperature</p>
               </div>
-              <p>
-                This view allows users to monitor various environmental
-                conditions in the room, including Temperature and Humidity.
-              </p>
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 4px">
+                  <span style="font-size: 2rem; font-weight: 600">45</span>
+                  <span style="font-size: 1rem">%</span>
+                </div>
+                <p style="font-size: 0.9rem">Humidity</p>
+              </div>
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 4px">
+                  <span style="font-size: 2rem; font-weight: 600; color: #1f97d4">Good</span>
+                </div>
+                <p style="font-size: 0.9rem">Air quality</p>
+              </div>
+              <div>
+                <div style="display: flex; align-items: baseline; gap: 4px">
+                  <span style="font-size: 2rem; font-weight: 600">1</span>
+                  <span style="font-size: 1rem">μg/m³</span>
+                </div>
+                <p style="font-size: 0.9rem">PM 2.5</p>
+              </div>
             </div>
+            <p>
+              This view allows users to monitor various environmental
+              conditions in the room, including Temperature and Humidity.
+            </p>
           </div>
+        </div>
 
-          <!-- Center Column - Phone Display -->
-          <div
-            style="display: flex; justify-content: center; align-items: center"
-          >
-            <img
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/airmanagement.png?raw=true"
-              alt="Air Management Interface"
-              style="
+        <!-- Center Column - Phone Display -->
+        <div style="display: flex; justify-content: center; align-items: center">
+          <img
+            src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/airmanagement.png?raw=true"
+            alt="Air Management Interface" style="
                 max-width: 320px;
                 width: 100%;
                 height: auto;
                 transition: transform 0.3s ease;
-              "
-              onmouseover="this.style.transform='scale(1.05)'"
-              onmouseout="this.style.transform='scale(1)'"
-            />
-          </div>
+              " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
 
-          <!-- Right Column - Notifications & Grid View -->
-          <div style="display: flex; flex-direction: column; gap: 32px">
-            <div class="feature-card">
-              <h3 style="margin-bottom: 16px">Notifications History</h3>
-              <div
-                style="
+        <!-- Right Column - Notifications & Grid View -->
+        <div style="display: flex; flex-direction: column; gap: 32px">
+          <div class="feature-card">
+            <h3 style="margin-bottom: 16px">Notifications History</h3>
+            <div style="
                   display: flex;
                   align-items: flex-start;
                   gap: 12px;
@@ -883,527 +901,489 @@
                   padding: 12px;
                   background: #f8f8f8;
                   border-radius: 8px;
-                "
-              >
-                <img
-                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircon_black.png?raw=true"
-                  alt="Air Condition"
-                  style="width: 32px; height: 32px; border-radius: 8px"
-                />
-                <p style="font-size: 0.9rem">
-                  <strong>Air Condition:</strong> Room temperature is high.
-                  Please start COOL operation.
-                </p>
-              </div>
-              <div
-                style="
-                  display: flex;
-                  align-items: flex-start;
-                  gap: 12px;
-                  margin-bottom: 16px;
-                  padding: 12px;
-                  background: #f8f8f8;
-                  border-radius: 8px;
-                "
-              >
-                <img
-                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apu_black.png?raw=true"
-                  alt="Air Purifier"
-                  style="width: 32px; height: 32px; border-radius: 8px"
-                />
-                <p style="font-size: 0.9rem">
-                  <strong>Air Purifier:</strong> PM 2.5 is high. Please start
-                  Turbo operation.
-                </p>
-              </div>
-              <p>
-                Easily access past notifications anytime, with all messages
-                stored in one place for quick tracking and reference.
+                ">
+              <img
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircon_black.png?raw=true"
+                alt="Air Condition" style="width: 32px; height: 32px; border-radius: 8px" />
+              <p style="font-size: 0.9rem">
+                <strong>Air Condition:</strong> Room temperature is high.
+                Please start COOL operation.
               </p>
             </div>
+            <div style="
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 12px;
+                  margin-bottom: 16px;
+                  padding: 12px;
+                  background: #f8f8f8;
+                  border-radius: 8px;
+                ">
+              <img
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apu_black.png?raw=true"
+                alt="Air Purifier" style="width: 32px; height: 32px; border-radius: 8px" />
+              <p style="font-size: 0.9rem">
+                <strong>Air Purifier:</strong> PM 2.5 is high. Please start
+                Turbo operation.
+              </p>
+            </div>
+            <p>
+              Easily access past notifications anytime, with all messages
+              stored in one place for quick tracking and reference.
+            </p>
+          </div>
 
-            <div class="feature-card">
-              <div
-                style="
+          <div class="feature-card">
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 12px;
                   margin-bottom: 16px;
-                "
-              >
-                <img
-                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/grid_icon.png?raw=true"
-                  alt="Grid View"
-                  style="width: 40px; height: 40px; border-radius: 8px"
-                />
-                <h3>Grid View</h3>
-              </div>
-              <div
-                style="
+                ">
+              <img
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/grid_icon.png?raw=true"
+                alt="Grid View" style="width: 40px; height: 40px; border-radius: 8px" />
+              <h3>Grid View</h3>
+            </div>
+            <div style="
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
                   gap: 16px;
                   margin-bottom: 16px;
-                "
-              >
-                <div style="display: flex; align-items: center; gap: 8px">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircon_black.png?raw=true"
-                    alt="Air Condition"
-                    style="width: 40px; height: 40px; border-radius: 8px"
-                  />
-                  <p>Air Condition</p>
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px">
-                  <img
-                    src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apu_black.png?raw=true"
-                    alt="Air Purifier"
-                    style="width: 40px; height: 40px; border-radius: 8px"
-                  />
-                  <p>Air Purifier</p>
-                </div>
+                ">
+              <div style="display: flex; align-items: center; gap: 8px">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/aircon_black.png?raw=true"
+                  alt="Air Condition" style="width: 40px; height: 40px; border-radius: 8px" />
+                <p>Air Condition</p>
               </div>
+              <div style="display: flex; align-items: center; gap: 8px">
+                <img
+                  src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/airmanagement/apu_black.png?raw=true"
+                  alt="Air Purifier" style="width: 40px; height: 40px; border-radius: 8px" />
+                <p>Air Purifier</p>
+              </div>
+            </div>
+            <p>
+              This view is used to display the devices located in the room.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Air Card Slider -->
+    <section id="aircard" class="section">
+      <!-- <div class="feature-header">
+          <h2 class="heading-secondary">AIR CARD</h2>
+        </div> -->
+      <h2 class="heading-secondary" style="text-align: center">AIR CARD</h2>
+      <p class="text-lead">
+        <span class="text-highlight">Experience</span> the next evolution of
+        control. Discover a new level of comfort and performance.
+      </p>
+
+      <div class="slider" data-slider>
+        <button class="slider-arrow slider-arrow--prev" data-prev>
+          &lt;
+        </button>
+        <button class="slider-arrow slider-arrow--next" data-next>
+          &gt;
+        </button>
+        <div class="slider-content">
+          <div class="slider-item aircard slider-item--active">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/fitness.png?raw=true"
+              alt="Fitness" />
+            <div class="description">
+              <span class="badge">FITNESS</span>
+              <p>Fitness Air card energizes your workout.</p>
+            </div>
+          </div>
+
+          <div class="slider-item aircard">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/goodsleep.png?raw=true"
+              alt="Good Sleep" />
+            <div class="description">
+              <span class="badge">GOOD SLEEP</span>
               <p>
-                This view is used to display the devices located in the room.
+                Good sleep Air card creates a time-based ambiance from bedtime
+                to your wake-up time.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item aircard">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/focus.png?raw=true"
+              alt="Focus" />
+            <div class="description">
+              <span class="badge">FOCUS</span>
+              <p>
+                Focus Air card creates an atmosphere to help you focus better.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item aircard">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/chill.png?raw=true"
+              alt="Chill Out" />
+            <div class="description">
+              <span class="badge">CHILL OUT</span>
+              <p>Chill out Air card creates a relaxing atmosphere for you.</p>
+            </div>
+          </div>
+
+          <div class="slider-item aircard">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/wildcard.png?raw=true"
+              alt="Customize" />
+            <div class="description">
+              <span class="badge">CUSTOMIZE</span>
+              <p>Enjoy with your customized air card.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-nav">
+          <div class="slider-dots"></div>
+        </div>
+      </div>
+
+      <div class="section-footer">
+        This function is supported on specific product models only.
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section">
+      <!-- <div class="feature-header">
+          <h2 class="heading-secondary">SCHEDULE</h2>
+        </div> -->
+      <h2 class="heading-secondary" style="text-align: center">SCHEDULE</h2>
+      <p class="text-lead">
+        This feature allows the air conditioner to turn on or off
+        automatically at set times, such as during the night or in the
+        morning, using a time-based schedule.
+      </p>
+
+      <div class="schedule-card-container" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))">
+        <div class="schedule-card" style="text-align: center">
+          <div class="schedule-image center">
+            <img
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/schedule/timezone.png?raw=true"
+              alt="Time Zone" style="
+                max-width: 280px;
+                width: 100%;
+                margin: 0 auto 16px;
+                border-radius: 16px;
+              " />
+          </div>
+
+          <h3>Time Zone</h3>
+          <p>
+            Choose any time zone around the world and keep your devices
+            perfectly in sync.
+          </p>
+        </div>
+
+        <div class="schedule-card" style="text-align: center">
+          <div class="schedule-image">
+            <img src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/schedule/add.png?raw=true"
+              alt="Add Schedule" style="
+                max-width: 280px;
+                width: 100%;
+                margin: 0 auto 16px;
+                border-radius: 16px;
+              " />
+          </div>
+
+          <h3>Concept Add Schedule</h3>
+          <p>
+            Add new schedules seamlessly and make your daily routines smarter
+            than ever.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Energy Monitoring Section -->
+    <section id="energy" class="section">
+      <!-- <div class="feature-header">
+          <h2 class="heading-secondary">ENERGY MONITORING</h2>
+        </div> -->
+      <h2 class="heading-secondary" style="text-align: center">
+        ENERGY MONITORING
+      </h2>
+      <p class="text-lead">
+        Know your power, live smarter.<br />
+        Keep track of your energy and make every day more efficient.
+      </p>
+
+      <div class="slider" data-slider>
+        <button class="slider-arrow slider-arrow--prev" data-prev>
+          &lt;
+        </button>
+        <button class="slider-arrow slider-arrow--next" data-next>
+          &gt;
+        </button>
+        <div class="slider-content">
+          <div class="slider-item slider-item--active">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy1.png?raw=true"
+              alt="Usage Summary" />
+            <div class="description">
+              <span class="badge">Usage Summary</span>
+              <h3>See it all, instantly</h3>
+              <p>
+                Simply open the Usage Summary to see an instant overview of
+                all your device usage, with key insights to help you
+                understand patterns and manage your devices smartly.
+              </p>
+              <h4 style="margin-top: 16px">Today Used</h4>
+              <p>
+                Calculate and display real-time usage, allowing you to track
+                your device's daily energy consumption with precision.
+              </p>
+              <h4 style="margin-top: 16px">Month Used</h4>
+              <p>
+                View your monthly usage overview to better understand your
+                energy consumption patterns.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy2.png?raw=true"
+              alt="Usage Overview" />
+            <div class="description">
+              <span class="badge">Usage Overview</span>
+              <h3>Your Energy at a Glance</h3>
+              <p>
+                Track your energy usage through an intuitive graph that helps
+                you visualize your consumption clearly.
+              </p>
+              <h4 style="margin-top: 16px">Compare (Support month & year)</h4>
+              <p>
+                Compare monthly or yearly data to discover usage trends and
+                energy efficiency.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy3.png?raw=true"
+              alt="Usage History" />
+            <div class="description">
+              <span class="badge">Usage History</span>
+              <h3>Past Usage Records</h3>
+              <p>
+                Easily access your device usage history with clear, intuitive
+                details that help you track patterns and manage energy use
+                more effectively.
+              </p>
+              <h4 style="margin-top: 16px">
+                Activity Summary (Support month & year)
+              </h4>
+              <p>
+                View device activity for the current month and year, plus the
+                previous period for easy comparison.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy4.png?raw=true"
+              alt="Pie Chart Summary" />
+            <div class="description">
+              <span class="badge">Pie Chart Summary</span>
+              <h3>Smart Analysis</h3>
+              <p>
+                Gain a deeper understanding of your energy consumption through
+                an intelligent pie chart that automatically calculates and
+                visualizes your usage percentage for each category.
+              </p>
+              <h4 style="margin-top: 16px">Device-based Insight</h4>
+              <p>
+                View energy consumption breakdowns for each device only giving
+                you clear insight into how each one contributes to your total
+                usage.
+              </p>
+            </div>
+          </div>
+
+          <div class="slider-item">
+            <img class="slider-image"
+              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy5.png?raw=true"
+              alt="Usage Limitation" />
+            <div class="description">
+              <span class="badge">Usage Limitation</span>
+              <h3>Usage Limitation Mode</h3>
+              <p>
+                Choose how much control or limitation you want – each mode
+                offers a different balance between performance and energy
+                efficiency.
               </p>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Air Card Slider -->
-      <section id="aircard" class="section">
-        <!-- <div class="feature-header">
-          <h2 class="heading-secondary">AIR CARD</h2>
-        </div> -->
-        <h2 class="heading-secondary" style="text-align: center">AIR CARD</h2>
-        <p class="text-lead">
-          <span class="text-highlight">Experience</span> the next evolution of
-          control. Discover a new level of comfort and performance.
-        </p>
-
-        <div class="slider" data-slider>
-          <button class="slider-arrow slider-arrow--prev" data-prev>
-            &lt;
-          </button>
-          <button class="slider-arrow slider-arrow--next" data-next>
-            &gt;
-          </button>
-          <div class="slider-content">
-            <div class="slider-item aircard slider-item--active">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/fitness.png?raw=true"
-                alt="Fitness"
-              />
-              <div class="description">
-                <span class="badge">FITNESS</span>
-                <p>Fitness Air card energizes your workout.</p>
-              </div>
-            </div>
-
-            <div class="slider-item aircard">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/goodsleep.png?raw=true"
-                alt="Good Sleep"
-              />
-              <div class="description">
-                <span class="badge">GOOD SLEEP</span>
-                <p>
-                  Good sleep Air card creates a time-based ambiance from bedtime
-                  to your wake-up time.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item aircard">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/focus.png?raw=true"
-                alt="Focus"
-              />
-              <div class="description">
-                <span class="badge">FOCUS</span>
-                <p>
-                  Focus Air card creates an atmosphere to help you focus better.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item aircard">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/chill.png?raw=true"
-                alt="Chill Out"
-              />
-              <div class="description">
-                <span class="badge">CHILL OUT</span>
-                <p>Chill out Air card creates a relaxing atmosphere for you.</p>
-              </div>
-            </div>
-
-            <div class="slider-item aircard">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/aircard/wildcard.png?raw=true"
-                alt="Customize"
-              />
-              <div class="description">
-                <span class="badge">CUSTOMIZE</span>
-                <p>Enjoy with your customized air card.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="slider-nav">
-            <div class="slider-dots"></div>
-          </div>
+        <div class="slider-nav">
+          <div class="slider-dots"></div>
         </div>
+      </div>
 
-        <div class="section-footer">
-          This function is supported on specific product models only.
-        </div>
-      </section>
+      <div class="section-footer">
+        This function is supported on specific product models only.
+      </div>
+    </section>
+  </div>
 
-      <!-- Schedule Section -->
-      <section id="schedule" class="section">
-        <!-- <div class="feature-header">
-          <h2 class="heading-secondary">SCHEDULE</h2>
-        </div> -->
-        <h2 class="heading-secondary" style="text-align: center">SCHEDULE</h2>
-        <p class="text-lead">
-          This feature allows the air conditioner to turn on or off
-          automatically at set times, such as during the night or in the
-          morning, using a time-based schedule.
-        </p>
+  <script>
+    // Scroll Progress
+    window.addEventListener("scroll", () => {
+      const progress = document.getElementById("scrollProgress");
+      const scrollTop = window.pageYOffset;
+      const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrollPercentage = (scrollTop / scrollHeight) * 100;
+      progress.style.width = scrollPercentage + "%";
+    });
 
-        <div
-          class="feature-grid"
-          style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))"
-        >
-          <div class="feature-card" style="text-align: center">
-            <img
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/schedule/timezone.png?raw=true"
-              alt="Time Zone"
-              style="
-                max-width: 280px;
-                width: 100%;
-                margin: 0 auto 16px;
-                border-radius: 16px;
-              "
-            />
-            <h3>Time Zone</h3>
-            <p>
-              Choose any time zone around the world and keep your devices
-              perfectly in sync.
-            </p>
-          </div>
+    // Sliders
+    document.addEventListener("DOMContentLoaded", function () {
+      const sliders = document.querySelectorAll("[data-slider]");
+      sliders.forEach((slider) => initSlider(slider));
+    });
 
-          <div class="feature-card" style="text-align: center">
-            <img
-              src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/schedule/add.png?raw=true"
-              alt="Add Schedule"
-              style="
-                max-width: 280px;
-                width: 100%;
-                margin: 0 auto 16px;
-                border-radius: 16px;
-              "
-            />
-            <h3>Concept Add Schedule</h3>
-            <p>
-              Add new schedules seamlessly and make your daily routines smarter
-              than ever.
-            </p>
-          </div>
-        </div>
-      </section>
+    function initSlider(slider) {
+      const items = slider.querySelectorAll(".slider-item");
+      const dotsContainer = slider.querySelector(".slider-dots");
+      const prevBtn = slider.querySelector("[data-prev]");
+      const nextBtn = slider.querySelector("[data-next]");
+      let currentIndex = 0;
+      let autoplayInterval;
 
-      <!-- Energy Monitoring Section -->
-      <section id="energy" class="section">
-        <!-- <div class="feature-header">
-          <h2 class="heading-secondary">ENERGY MONITORING</h2>
-        </div> -->
-        <h2 class="heading-secondary" style="text-align: center">
-          ENERGY MONITORING
-        </h2>
-        <p class="text-lead">
-          Know your power, live smarter.<br />
-          Keep track of your energy and make every day more efficient.
-        </p>
-
-        <div class="slider" data-slider>
-          <button class="slider-arrow slider-arrow--prev" data-prev>
-            &lt;
-          </button>
-          <button class="slider-arrow slider-arrow--next" data-next>
-            &gt;
-          </button>
-          <div class="slider-content">
-            <div class="slider-item slider-item--active">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy1.png?raw=true"
-                alt="Usage Summary"
-              />
-              <div class="description">
-                <span class="badge">Usage Summary</span>
-                <h3>See it all, instantly</h3>
-                <p>
-                  Simply open the Usage Summary to see an instant overview of
-                  all your device usage, with key insights to help you
-                  understand patterns and manage your devices smartly.
-                </p>
-                <h4 style="margin-top: 16px">Today Used</h4>
-                <p>
-                  Calculate and display real-time usage, allowing you to track
-                  your device's daily energy consumption with precision.
-                </p>
-                <h4 style="margin-top: 16px">Month Used</h4>
-                <p>
-                  View your monthly usage overview to better understand your
-                  energy consumption patterns.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy2.png?raw=true"
-                alt="Usage Overview"
-              />
-              <div class="description">
-                <span class="badge">Usage Overview</span>
-                <h3>Your Energy at a Glance</h3>
-                <p>
-                  Track your energy usage through an intuitive graph that helps
-                  you visualize your consumption clearly.
-                </p>
-                <h4 style="margin-top: 16px">Compare (Support month & year)</h4>
-                <p>
-                  Compare monthly or yearly data to discover usage trends and
-                  energy efficiency.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy3.png?raw=true"
-                alt="Usage History"
-              />
-              <div class="description">
-                <span class="badge">Usage History</span>
-                <h3>Past Usage Records</h3>
-                <p>
-                  Easily access your device usage history with clear, intuitive
-                  details that help you track patterns and manage energy use
-                  more effectively.
-                </p>
-                <h4 style="margin-top: 16px">
-                  Activity Summary (Support month & year)
-                </h4>
-                <p>
-                  View device activity for the current month and year, plus the
-                  previous period for easy comparison.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy4.png?raw=true"
-                alt="Pie Chart Summary"
-              />
-              <div class="description">
-                <span class="badge">Pie Chart Summary</span>
-                <h3>Smart Analysis</h3>
-                <p>
-                  Gain a deeper understanding of your energy consumption through
-                  an intelligent pie chart that automatically calculates and
-                  visualizes your usage percentage for each category.
-                </p>
-                <h4 style="margin-top: 16px">Device-based Insight</h4>
-                <p>
-                  View energy consumption breakdowns for each device only giving
-                  you clear insight into how each one contributes to your total
-                  usage.
-                </p>
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <img
-                class="slider-image"
-                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/top/energy/energy5.png?raw=true"
-                alt="Usage Limitation"
-              />
-              <div class="description">
-                <span class="badge">Usage Limitation</span>
-                <h3>Usage Limitation Mode</h3>
-                <p>
-                  Choose how much control or limitation you want – each mode
-                  offers a different balance between performance and energy
-                  efficiency.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="slider-nav">
-            <div class="slider-dots"></div>
-          </div>
-        </div>
-
-        <div class="section-footer">
-          This function is supported on specific product models only.
-        </div>
-      </section>
-    </div>
-
-    <script>
-      // Scroll Progress
-      window.addEventListener("scroll", () => {
-        const progress = document.getElementById("scrollProgress");
-        const scrollTop = window.pageYOffset;
-        const scrollHeight =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        progress.style.width = scrollPercentage + "%";
+      // Create dots
+      items.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.className =
+          "slider-dot" + (index === 0 ? " slider-dot--active" : "");
+        dot.addEventListener("click", () => showSlide(index));
+        dotsContainer.appendChild(dot);
       });
 
-      // Sliders
-      document.addEventListener("DOMContentLoaded", function () {
-        const sliders = document.querySelectorAll("[data-slider]");
-        sliders.forEach((slider) => initSlider(slider));
-      });
+      const dots = dotsContainer.querySelectorAll(".slider-dot");
 
-      function initSlider(slider) {
-        const items = slider.querySelectorAll(".slider-item");
-        const dotsContainer = slider.querySelector(".slider-dots");
-        const prevBtn = slider.querySelector("[data-prev]");
-        const nextBtn = slider.querySelector("[data-next]");
-        let currentIndex = 0;
-        let autoplayInterval;
-
-        // Create dots
-        items.forEach((_, index) => {
-          const dot = document.createElement("button");
-          dot.className =
-            "slider-dot" + (index === 0 ? " slider-dot--active" : "");
-          dot.addEventListener("click", () => showSlide(index));
-          dotsContainer.appendChild(dot);
+      function showSlide(index) {
+        items.forEach((item, i) => {
+          item.classList.toggle("slider-item--active", i === index);
         });
-
-        const dots = dotsContainer.querySelectorAll(".slider-dot");
-
-        function showSlide(index) {
-          items.forEach((item, i) => {
-            item.classList.toggle("slider-item--active", i === index);
-          });
-          dots.forEach((dot, i) => {
-            dot.classList.toggle("slider-dot--active", i === index);
-          });
-          currentIndex = index;
-        }
-
-        function nextSlide() {
-          showSlide((currentIndex + 1) % items.length);
-        }
-
-        function prevSlide() {
-          showSlide((currentIndex - 1 + items.length) % items.length);
-        }
-
-        // Autoplay
-        function startAutoplay() {
-          autoplayInterval = setInterval(nextSlide, 5000);
-        }
-
-        function stopAutoplay() {
-          clearInterval(autoplayInterval);
-        }
-
-        prevBtn.addEventListener("click", () => {
-          prevSlide();
-          //stopAutoplay();
-          //startAutoplay();
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("slider-dot--active", i === index);
         });
-
-        nextBtn.addEventListener("click", () => {
-          nextSlide();
-          //stopAutoplay();
-          //startAutoplay();
-        });
-
-        // Touch support
-        let touchStartX = 0;
-        slider.addEventListener("touchstart", (e) => {
-          touchStartX = e.changedTouches[0].screenX;
-          //stopAutoplay();
-        });
-
-        slider.addEventListener("touchend", (e) => {
-          const touchEndX = e.changedTouches[0].screenX;
-          if (touchStartX - touchEndX > 50) nextSlide();
-          if (touchStartX - touchEndX < -50) prevSlide();
-          //startAutoplay();
-        });
-
-        // Pause on hover
-        // slider.addEventListener("mouseenter", stopAutoplay);
-        // slider.addEventListener("mouseleave", startAutoplay);
-
-        // startAutoplay();
+        currentIndex = index;
       }
 
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
+      function nextSlide() {
+        showSlide((currentIndex + 1) % items.length);
+      }
+
+      function prevSlide() {
+        showSlide((currentIndex - 1 + items.length) % items.length);
+      }
+
+      // Autoplay
+      function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 5000);
+      }
+
+      function stopAutoplay() {
+        clearInterval(autoplayInterval);
+      }
+
+      prevBtn.addEventListener("click", () => {
+        prevSlide();
+        //stopAutoplay();
+        //startAutoplay();
       });
 
-      //Download Redirection
-      function DownloadRedirection() {
-        const ua = navigator.userAgent.toLowerCase();
-        const params = new URLSearchParams(window.location.search);
-        const platform = (params.get("platform") || "").toLowerCase();
+      nextBtn.addEventListener("click", () => {
+        nextSlide();
+        //stopAutoplay();
+        //startAutoplay();
+      });
 
-        // Default fallback
-        let target =
+      // Touch support
+      let touchStartX = 0;
+      slider.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        //stopAutoplay();
+      });
+
+      slider.addEventListener("touchend", (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) nextSlide();
+        if (touchStartX - touchEndX < -50) prevSlide();
+        //startAutoplay();
+      });
+
+      // Pause on hover
+      // slider.addEventListener("mouseenter", stopAutoplay);
+      // slider.addEventListener("mouseleave", startAutoplay);
+
+      // startAutoplay();
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    //Download Redirection
+    function DownloadRedirection() {
+      const ua = navigator.userAgent.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const platform = (params.get("platform") || "").toLowerCase();
+
+      // Default fallback
+      let target =
+        "https://play.google.com/store/apps/details?id=ao.daikin.remoapp";
+
+      // Manual override via query
+      if (platform === "ios") {
+        target =
+          "https://apps.apple.com/th/app/daikin-mobile-controller/id917168708";
+      } else if (platform === "android") {
+        target =
           "https://play.google.com/store/apps/details?id=ao.daikin.remoapp";
-
-        // Manual override via query
-        if (platform === "ios") {
+      } else {
+        // Auto-detect based on User-Agent
+        if (/iphone|ipad|ipod/.test(ua)) {
           target =
             "https://apps.apple.com/th/app/daikin-mobile-controller/id917168708";
-        } else if (platform === "android") {
+        } else if (/android/.test(ua)) {
           target =
             "https://play.google.com/store/apps/details?id=ao.daikin.remoapp";
-        } else {
-          // Auto-detect based on User-Agent
-          if (/iphone|ipad|ipod/.test(ua)) {
-            target =
-              "https://apps.apple.com/th/app/daikin-mobile-controller/id917168708";
-          } else if (/android/.test(ua)) {
-            target =
-              "https://play.google.com/store/apps/details?id=ao.daikin.remoapp";
-          }
         }
-
-        // Redirect now
-        window.open(target, "_blank");
       }
-    </script>
-  </body>
+
+      // Redirect now
+      window.open(target, "_blank");
+    }
+  </script>
+</body>
+
 </html>
