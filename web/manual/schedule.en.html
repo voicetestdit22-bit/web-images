@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DAIKIN myAIR Manual</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <style>
+  * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        filter: grayscale(0%);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        line-height: 1.6;
+        color: #000;
+        background: #fff;
+        overflow-x: hidden;
+        width: 100%;
+      }
+
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1f97d4, #00b4ff);
+        z-index: 9999;
+        transition: width 0.1s ease;
+      }
+
+      .main-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+
+      .content-section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .content-section.hidden {
+        display: none;
+      }
+
+      .section-header {
+        text-align: center;
+        padding: 32px;
+        border-radius: 16px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .section-description {
+        color: #666;
+      }
+
+      .card-wrapper {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      .device-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+      }
+
+      .device-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .device-icon {
+        padding: 12px;
+        height: 71px;
+      }
+
+      .feature-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .feature-btn {
+        background: rgba(241, 241, 241, 1);
+        min-width: fit-content;
+        min-height: 40px;
+        border: none;
+        border-radius: 40px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .feature-btn:hover {
+        background: rgba(220, 220, 220, 1);
+      }
+
+       /* back button */
+      .back-btn {
+        background: #0094e2;
+        color: #fff;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        margin: 16px auto 0;
+        display: block;
+        transition: background 0.25s ease, transform 0.15s ease;
+      }
+
+      .back-btn:hover {
+        background: #0080c8;
+        transform: translateY(-1px);
+      }
+
+      /* schedule head */
+      .content-schedule {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        max-width: 960px;
+        margin: 8rem auto 72px;
+      }
+
+      .schedule-phone {
+        flex: 0 0 auto;
+        display: flex;
+        margin-right: 3rem;
+      }
+
+      .schedule-phone img {
+        max-width: 250px;
+        width: 100%;
+        height: auto;
+      }
+
+      .schedule-text {
+        flex: 1;
+        max-width: 400px;
+        color: #000;
+      }
+
+      .schedule-icon-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .schedule-icon-title h2 {
+        font-size: 24px;
+        font-weight: Bold;
+      }
+
+      .clock-icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      .schedule-text p {
+        line-height: 1.5;
+        font-size: 16px;
+      }
+
+      /* text-box */
+      .text-box {
+        margin: 5rem auto;
+        max-width: 960px;
+        width: 100%;
+      }
+
+      .text-box h1 {
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .text-box p {
+        margin-top: 1rem;
+        line-height: 1.8;
+        letter-spacing: 0.5px;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      /* phone */
+      .overview-phone {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .phone-box {
+        flex: 1 1 auto;
+        display: flex;
+        margin-left: 7rem;
+      }
+
+      .phone-box img{
+        max-width: 466px;
+        width: 100%;
+        height: auto;
+      }
+
+      
+      /* line end */
+      .line-end {
+        max-width: 960px;
+        height: 0;
+        margin: 5rem auto;
+        border: 1px solid #E6E6E6
+      }
+
+      /* icon */
+      .vector-icon {
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+        vertical-align: middle;
+      }
+
+      /* schedule flow */
+      .flow-schedule {
+        max-width: 930px;
+        margin: -2rem auto;
+      }
+
+      .flow-section {
+        margin: 48px auto;
+      }
+
+      .flow-dot {
+        margin-right: 4px;
+      }
+
+      .label-icon {
+        margin: auto 4px;
+        width: 24px;
+        height: 24px;
+        position: relative;
+        top: 3.5px;
+      }
+
+      .flow-text-h {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 4px;
+      }
+
+      .flow-text-p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .phone-row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        min-height: 30vh;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      .phone-frame {
+        display: flex;
+        flex: 1 1 auto;
+        margin: auto;
+      }
+
+      .phone-frame img {
+        max-width: 824px;
+        width: 100%;
+        height: auto;
+      }
+
+      /* notes under phone */
+      .note-box {
+        width: auto;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        text-align: left;
+        margin-left: 3.5rem;
+        margin-top: 10px;
+        display: block;
+        justify-items: flex-start;
+      }
+
+      .note-box-img {
+        position: relative;
+        top: 6px;
+        padding: 0 4px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .note-box strong {
+        font-weight: bold;
+      }
+
+      /* edit schedule */
+      .edit-schedule {
+        max-width: 900px;
+        min-height: 360px;
+        margin: 5rem auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 3px;
+      }
+
+      .edit-flow-row {
+        display: flex;
+        justify-content: center;
+        margin:0;
+        flex: 1 1 auto;
+      }
+
+      .edit-flow-row img {
+        max-width: 250px;
+        width: 100%;
+        height: auto;
+      }
+
+      .edit-arrow {
+        flex: 1 1 auto;
+        margin: 15rem -5rem;
+      }
+
+      .edit-arrow img{
+        max-width: 100px;
+        width: 100%;
+      }
+
+
+      /* responsive */
+      /* 320px */
+      @media only screen and (max-width: 320px) {
+        header{
+          height: auto;
+        }
+        .schedule-icon-title h2 {
+          font-size: 20px;
+        }
+
+        .clock-icon {
+          width: 36px;
+          height: 36px;
+        }
+
+        .text-box h1 {
+          font-size: 28px !important;
+        }
+
+        .text-box p {
+          font-size: 14px !important;
+        }
+        
+        .vector-icon {
+          width: 16px;
+          height: 16px;
+          margin: 0 4px 2px;
+        }
+
+        .phone-box img{
+          width: 290px;
+        }
+
+        .flow-text-h {
+          font-size: 20px;
+        }
+        .flow-text-p {
+          font-size: 14px;
+        }
+
+        .label-icon img {
+          position: relative;
+          max-width: 18px;
+          max-height: 18px;
+          top: -2px;
+        }
+
+        .flow-text-h {
+          font-size: 20px !important;
+        }
+
+        .flow-text-p {
+          font-size: 12px !important;
+        }
+       
+        .phone-frame img{
+          max-width: 385px;
+        }
+
+        .note-box {
+          width: 300px;
+          margin-left: -1rem;
+          font-size: 10px !important;
+        }
+
+        .note-box-img img {
+          max-width: 16px;
+          max-height: 16px;
+  
+        }
+     
+        .edit-schedule {
+          height: 20vh;
+        }
+        
+        .edit-flow-row  {
+          width: 40%;
+        }
+
+        .edit-arrow {
+          position: relative;
+          top: -5rem;
+          left: .3rem;
+        }
+
+        .edit-arrow img{
+          width: 40%;
+        }
+    
+      }
+
+      /* 480px */
+      @media only screen and (max-width: 480px) {
+        header{
+          height: auto;
+        }
+
+        .content-schedule {
+          flex-direction: column;
+          margin: 3rem 0;
+          flex-direction: column-reverse;
+        }
+
+        .clock-icon {
+          width: 40px;
+          height: 40px;
+        }
+
+        .schedule-phone {
+          align-self: center;
+        }
+
+        .schedule-icon-title{
+          justify-content: center;
+        }
+
+        .schedule-text {
+          align-self: center;
+          text-align: center;          
+        }
+
+        .text-box h1 {
+          font-size: 34px;
+        }
+
+        .phone-box img{
+          margin-left: -2.5rem;
+        }
+
+        .vector-icon {
+          max-width: 16px;
+          max-height: 16px;
+          margin: 6px;
+        }
+
+        .label-icon {
+          margin:0;
+        }
+
+        .label-icon img{
+          width: 22px;
+          height: 22px;
+        }
+
+        .flow-text-h {
+          position: relative;
+          font-size: 16px; 
+        }
+
+        .flow-text-p {
+          font-size: 14px;
+        }
+
+        .phone-row {
+          min-height: 20vh;
+        }
+
+        .phone-frame img {
+          width: 560px;
+        }
+
+        .edit-schedule {
+          margin: 1.5rem 0;
+        }
+
+        .edit-flow-row img {
+          margin: 0 -3rem;
+        }
+
+        .edit-arrow {
+          margin-top: 12rem;  
+        }
+
+        .edit-arrow img{
+          max-width: 45px;
+          margin: auto 1.5rem;
+        }
+        
+      }
+
+      /* 768px */
+      @media only screen and (max-width: 768px) {
+        header{
+          height: auto;
+        }
+
+        .schedule-phone {
+          margin-left: 2rem ;
+        }
+
+        .text-box {
+          margin: 3.5rem auto;
+        }
+
+        .flow-schedule {
+          max-width: 700px;
+          margin: -2rem auto;
+        }
+
+        .flow-section {
+          margin: 40px auto;
+        }
+
+        .flow-text-h {
+          font-size: 26px;
+        }
+
+        .phone-box {
+          margin-left: 2.5rem;
+
+        }
+
+        .note-box {
+          margin-bottom: 10px;
+        }
+
+        .edit-schedule {
+          gap: 60px;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="progress-bar" id="scrollProgress"></div>
+
+    <main class="main-container">
+      <!-- Welcome Section -->
+      <section class="content-section" id="welcome-section">
+        <div class="section-header">
+          <h1 class="section-title">Welcome to the DAIKIN myAIR app</h1>
+          <p class="section-description">
+            Experience the convenience of smart air conditioning with this app.
+          </p>
+        </div>
+
+        <div class="card-wrapper">
+          <div class="device-grid">
+            <div class="device-item">
+              <img
+                class="device-icon" 
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/manual/welcome/aircon.png?raw=true"
+                alt="Air Conditioner"
+              />
+              <p>Air Conditioner</p>
+            </div>
+            <div class="device-item">
+              <img
+                class="device-icon"
+                src="https://github.com/voicetestdit22-bit/web-images/blob/main/images/manual/welcome/apu.png?raw=true"
+                alt="Air Purifier"
+              />
+              <p>Air Purifier</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Features Navigation Section -->
+      <section class="content-section" id="features-section">
+        <div class="section-header">
+          <h1 class="section-title">Features</h1>
+        </div>
+
+        <div class="card-wrapper">
+          <nav class="feature-grid">
+            <button class="feature-btn" data-section="control">
+              Simply control your AIR
+            </button>
+            <button class="feature-btn" data-section="management">
+              Air Management
+            </button>
+            <button class="feature-btn" data-section="aircard">
+              AIR CARD
+            </button>
+            <button class="feature-btn" data-section="scheduling">
+              Scheduling
+            </button>
+            <button class="feature-btn" data-section="energy">
+              Energy monitoring
+            </button>
+            <button class="feature-btn" data-section="settings">
+              Settings
+            </button>
+          </nav>
+        </div>
+      </section>
+      <!-- Schedule Section -->
+      <div class="content-schedule">
+            <div class="schedule-phone">
+                <img
+                    src="/images//manual/schedule/phone-schedule.png"
+                    alt="phone-scheduling"
+                /> 
+            </div>
+            <div class="schedule-text">
+                <div class="schedule-icon-title">
+                    <img class="clock-icon" 
+                        src="/images/manual/schedule/clock.png"
+                        alt="clock-icon"
+                    />
+                    <h2>SCHEDULING</h2>
+                </div>
+                <p>
+                    Set the days of the week and times that specific operations
+                    start and end, and other detailed settings.
+                </p>
+            </div>
+        </div>
+        <div class="text-box">
+            <h1>Overviews</h1>
+            <p>Make life simpler than ever. By scheduling and letting the system work for you, 
+              your devices are managed automatically, whether turning them ON or OFF. 
+              You can easily create actions using a Timer or schedule a desired AIR CARD. 
+              The system organizes your tasks seamlessly, making everything easy to view and convenient to edit. 
+              Set it once... and let everything run on schedule.
+            </p>
+        </div>
+
+    <div class="overview-phone">
+            <div class="phone-box">
+              <img 
+                src="/images/manual/schedule/phone-Overviews-Group.png" alt="Scheduling screen" 
+                />
+            </div>
+          </div>
+    </div>
+
+<div class="line-end"></div>
+
+<div class="text-box">
+  <h1>Add Schedule Flow</h1>
+  <p> 1. The 
+    <img 
+    class="vector-icon"
+    src="/images/manual/schedule/plus2.png"
+    /> Add schedule tab on your Scheduling page.
+      <br>2. Follow the steps below.
+  </p>
+</div>
+
+<div class="flow-schedule">
+  <!-- flow : Where -->
+  <section class="flow-section">
+    <span class="flow-dot"> • </span>
+    <span class="label-icon" >
+      <img
+      src="/images/manual/schedule/location.png"          
+      />
+    </span>
+    <span class="flow-text-h">Where</span>
+    <span style="font-weight: 700; margin:0 2px;">:</span>
+    <span class="flow-text-p">
+      First, select Where to choose the room where you want to add the schedule.
+    </span>
+
+    <div class="phone-row">
+      <div class="phone-frame">
+        <img src="/images/manual/schedule/Where-phone.png"
+        alt="Where" 
+        />
+      </div>
+    </div>
+  </section>
+  <!-- flow : What -->
+  <section class="flow-section">
+    <span class="flow-dot"> • </span>
+    <span class="label-icon" >
+      <img
+      src="/images/manual/schedule/star-icon.png"          
+      />
+    </span>
+    <span class="flow-text-h">What</span>
+    <span style="font-weight: 700; margin:0 2px;">:</span>
+    <span class="flow-text-p">
+      Choose whether to set a Timer for the device or a Timer for the AIR CARD.
+    </span>
+    <div class="phone-row">
+      <div class="phone-frame"> 
+        <img  src="/images/manual/schedule/set-time.png"
+              alt="What" 
+        />
+      </div>
+    </div>
+
+     <div class="note-box">
+        <span class="note-box-img">
+          <img
+            src="/images/manual/schedule/note-Vector.png"
+          />
+        </span>
+        <strong>Note :</strong>
+          <span> The operation settings may vary depending on the device.</span>        
+      </div>
+
+    <div class="phone-row">
+      <div class="phone-frame">
+        <img  src="/images/manual/schedule/set-aircard.png"
+              alt="What" 
+        />
+    </div>
+      </div>
+      <div class="note-box">
+        <span class="note-box-img">
+          <img
+            src="/images/manual/schedule/note-Vector.png"
+          />
+        </span>
+        <strong>Note :</strong>
+          <span> CARD functionality depends on whether the device supports it.</span>  
+      </div>
+  </section>
+  
+  <!-- flow : When -->
+  <section class="flow-section">
+    <span class="flow-dot"> • </span>
+    <span class="label-icon" >
+      <img
+        src="/images/manual/schedule/Vector-time.png"          
+      />
+    </span>
+    <span class="flow-text-h">When</span>
+    <span style="font-weight: 700; margin:0 2px;">:</span>
+    <span class="flow-text-p">
+      Choose which days of the week and what time you want the device to work.
+    </span>
+    <div class="phone-row">
+      <div class="phone-frame">
+        <img src="/images/manual/schedule/when-phone.png"
+        alt="Where" 
+        />
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="text-box"> 
+    <p> 3. After finishing the setup, tap “Save this schedule.”
+      <br> 4. You will get the scheduled task on the Scheduling page.
+    </p>
+  </div>
+  <div class="line-end"></div>
+
+  <!-- edit schedule -->
+  <div class="text-box">
+    <h1>Edit Schedule</h1>
+    <div class="edit-schedule">
+      <div class="edit-flow-row">
+        <img
+          src="/images/manual/schedule/edit-phone.png" 
+          alt="Edit before"
+          >
+      </div>
+
+        <div class="edit-arrow">
+          <img
+            src="/images/manual/schedule/Arrow.png"
+            alt="arrow"
+          >
+        </div>
+        <div class="edit-flow-row">
+          <img 
+          src="/images/manual/schedule/after-edit.png" 
+          alt="Edit schedule screen"
+        />
+        </div>
+    </div>
+    <p>
+      1. Tab schedule task on the scheduling page.
+      <br> 2. Edit or delete your schedule.
+    </p>
+  </div>
+
+
+
+      <!-- Feature Detail Sections (Hidden by default) -->
+      <section class="content-section hidden" id="control-section">
+        <div class="section-header">
+          <h1 class="section-title">Simply Control Your AIR</h1>
+          <p class="section-description">
+            Control your air conditioning w
+            ith ease from anywhere.
+          </p>
+        </div>
+        <button class="back-btn" onclick="showMainSections()">
+          Back to Features
+        </button>
+      </section>
+
+      <section class="content-section hidden" id="management-section">
+        <div class="section-header">
+          <h1 class="section-title">Air Management</h1>
+          <p class="section-description">
+            Manage multiple air conditioning units efficiently.
+          </p>
+        </div>
+        <button class="back-btn" onclick="showMainSections()">
+          Back to Features
+        </button>
+      </section>
+
+      <section class="content-section hidden" id="scheduling-section">
+        <div class="section-header">
+          <h1 class="section-title">Scheduling</h1>
+          <p class="section-description">
+            Set up schedules for automatic temperature control.
+          </p>
+        </div>
+        <button class="back-btn" onclick="showMainSections()">
+          Back to Features
+        </button>
+      </section>
+
+      <section class="content-section hidden" id="energy-section">
+        <div class="section-header">
+          <h1 class="section-title">Energy Monitoring</h1>
+          <p class="section-description">
+            Track your energy consumption and save on costs.
+          </p>
+        </div>
+        <button class="back-btn" onclick="showMainSections()">
+          Back to Features
+        </button>
+      </section>
+
+      <section class="content-section hidden" id="settings-section">
+        <div class="section-header">
+          <h1 class="section-title">Settings</h1>
+          <p class="section-description">
+            Customize your app preferences and device settings.
+          </p>
+        </div>
+        <button class="back-btn" onclick="showMainSections()">
+          Back to Features
+        </button>
+      </section>
+    </main>
+  </body>
+</html>
